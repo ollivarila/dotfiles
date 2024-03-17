@@ -247,10 +247,9 @@ end
 
 function M.harpoon()
   local add_file = require('harpoon.mark').add_file
-  norm('<leader>ha', add_file, '[A]dd a file to [H]arpoon')
   local ui = require 'harpoon.ui'
 
-  norm('<leader>hm', ui.toggle_quick_menu, 'Toggle [H]arpoon [M]enu')
+  norm('<leader>ha', add_file, '[A]dd a file to [H]arpoon')
 
   for i = 1, 6, 1 do
     norm('<leader>' .. i, function()
