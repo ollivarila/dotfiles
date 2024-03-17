@@ -1,9 +1,5 @@
 ["nvim"]
 target_path = "~/.config/nvim"
-is_installed_cmd = "which nvim" 
 
 [".tmux.conf"]
 target_path = "~/.tmux.conf"
-is_installed_cmd = "which tmux" 
-
-
