@@ -3,3 +3,12 @@ target_path = "~/.config/nvim"
 
 [".tmux.conf"]
 target_path = "~/.tmux.conf"
+
+["zsh"]
+".zshrc" = {
+	target_path = "~/.zshrc"
+}
+".oh-my-zsh/custom" = {
+	target_path = "~/.oh-my-zsh/custom"
+}
+
