@@ -4,8 +4,9 @@ target_path = "~/.config/nvim"
 [".tmux.conf"]
 target_path = "~/.tmux.conf"
 
-["zsh".".zshrc"]
+["zsh/.zshrc"]
 target_path = "~/.zshrc"
-["zsh".".oh-my-zsh/custom"]
+
+["zsh/.oh-my-zsh/custom"]
 target_path = "~/.oh-my-zsh/custom"
 
