@@ -29,6 +29,4 @@ require('lazy').setup(plugins)
 -- Pick session if nvim started with no args
 utils.pick_session_if_empty_file()
 
--- TODO: multi cursor
-
 -- vim: ts=2 sts=2 sw=2 et

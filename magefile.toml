@@ -7,3 +7,5 @@ target_path = "~/.tmux.conf"
 ["zsh/.oh-my-zsh/custom"]
 target_path = "~/.oh-my-zsh/custom"
 
+# ["zsh/.zshrc"]
+# target_path = "~/.zshrc"

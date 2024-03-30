@@ -206,7 +206,8 @@ function M.lsp_saga()
 end
 
 function M.trouble()
-  -- local trouble = require 'trouble'
+  local trouble = require 'trouble'
+  norm('<leader>xx', trouble.toggle, 'Toggle Trouble')
   -- norm('d]', function()
   --   trouble.open 'workspace_diagnostics'
   --   trouble.next {
