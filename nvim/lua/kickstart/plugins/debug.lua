@@ -8,22 +8,25 @@
 
 return {
   -- NOTE: Yes, you can install new plugins here!
-  'mfussenegger/nvim-dap',
+  'rcarriga/nvim-dap-ui',
   -- NOTE: And you can specify dependencies as well
   dependencies = {
     -- Creates a beautiful debugger UI
-    'rcarriga/nvim-dap-ui',
+    'mfussenegger/nvim-dap',
 
     -- Installs the debug adapters for you
     'williamboman/mason.nvim',
     'jay-babu/mason-nvim-dap.nvim',
 
     -- Add your own debuggers here
-    'leoluz/nvim-dap-go',
+    -- 'leoluz/nvim-dap-go',
+    'jonboh/nvim-dap-rr',
   },
   config = function()
+    print 'Configuring debuggers'
     local dap = require 'dap'
     local dapui = require 'dapui'
+    dapui.setup()
 
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
@@ -37,6 +40,7 @@ return {
       -- You'll need to check that you have the required things installed
       -- online, please don't ask me how to install them :)
       ensure_installed = {
+        'cpptools',
         -- Update this to ensure that you have the debuggers for the langs you want
       },
     }
@@ -81,6 +85,6 @@ return {
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
     -- Install golang specific config
-    require('dap-go').setup()
+    -- require('dap-go').setup()
   end,
 }

@@ -6,7 +6,6 @@ return {
     },
     { 'mfussenegger/nvim-dap' },
     {
-
       'neovim/nvim-lspconfig',
     },
   },

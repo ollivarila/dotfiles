@@ -61,7 +61,7 @@ function M.get_plugins()
   -- Merge core and custom plugins
   local plugins = require 'core'
   local custom_plugins = {
-    require 'kickstart.plugins.debug',
+    -- require 'kickstart.plugins.debug',
     require 'kickstart.plugins.indent_line',
     { import = 'custom.plugins' },
   }

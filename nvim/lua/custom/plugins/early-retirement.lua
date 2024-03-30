@@ -3,7 +3,7 @@ return {
   event = 'VeryLazy',
   opts = {
     -- If a buffer has been inactive for this many minutes, close it.
-    retirementAgeMins = 20,
+    retirementAgeMins = 10,
 
     -- Filetypes to ignore.
     ignoredFiletypes = {},

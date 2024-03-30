@@ -14,10 +14,10 @@ end
 
 function M.defaults()
   -- Edit config
-  vim.keymap.set('n', '<leader>co', function()
-    vim.cmd 'cd ~/.config/nvim'
-    vim.cmd 'e ~/.config/nvim/init.lua'
-  end)
+  -- vim.keymap.set('n', '<leader>co', function()
+  --   vim.cmd 'cd ~/.config/nvim'
+  --   vim.cmd 'e ~/.config/nvim/init.lua'
+  -- end)
 
   vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
@@ -203,6 +203,27 @@ function M.lsp_saga()
   norm('d[', function()
     diagnostic:goto_prev(diag_opts)
   end, 'Previous [D]iagnostic')
+end
+
+function M.trouble()
+  -- local trouble = require 'trouble'
+  -- norm('d]', function()
+  --   trouble.open 'workspace_diagnostics'
+  --   trouble.next {
+  --     skip_groups = true,
+  --     jump = true,
+  --   }
+  --   trouble.close()
+  -- end, 'Next [D]iagnostic')
+  --
+  -- norm('d[', function()
+  --   trouble.open 'workspace_diagnostics'
+  --   trouble.previous {
+  --     skip_groups = true,
+  --     jump = true,
+  --   }
+  --   trouble.close()
+  -- end, 'Previous [D]iagnostic')
 end
 
 function M.mini_sessions()
