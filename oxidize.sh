@@ -48,3 +48,5 @@ if [ -e "$HOME/.cargo/bin/bob" ]; then
 else
   cargo install bob-nvim
 fi
+
+rustup component add rust-analyzer
