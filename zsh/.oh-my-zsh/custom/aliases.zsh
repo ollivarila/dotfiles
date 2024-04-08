@@ -11,3 +11,5 @@ alias m="minikube"
 alias ls="exa"
 
 alias la="exa -la"
+
+alias types='_t() { pnpm i -D "@types/$1" }; noglob _t'

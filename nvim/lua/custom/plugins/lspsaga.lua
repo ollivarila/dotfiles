@@ -1,7 +1,12 @@
 return {
   'nvimdev/lspsaga.nvim',
   config = function()
-    require('lspsaga').setup {}
+    require('lspsaga').setup {
+      ui = {
+        border = 'none',
+      },
+      hover = {},
+    }
     require('custom.keymaps').lsp_saga()
   end,
   dependencies = {

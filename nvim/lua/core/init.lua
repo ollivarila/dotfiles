@@ -150,7 +150,8 @@ return {
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-        -- tsserver = {},
+        tsserver = {},
+        ['eslint-lsp'] = {},
         --
 
         lua_ls = {
@@ -195,6 +196,8 @@ return {
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format lua code
         'cpptools', -- For debugging
+        'jq', -- Json processor
+        'prettier', -- Js formatter
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -215,7 +218,7 @@ return {
   { -- Autoformat
     'stevearc/conform.nvim',
     opts = {
-      notify_on_error = true,
+      notify_on_error = false,
       format_on_save = {
         timeout_ms = 500,
         lsp_fallback = true,
@@ -223,6 +226,9 @@ return {
       formatters_by_ft = {
         lua = { 'stylua' },
         sql = { 'sql_formatter' },
+        json = { 'jq' },
+        javascript = { 'prettier' },
+        typescript = { 'prettier' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "", "black" },
         --
@@ -386,7 +392,7 @@ return {
 
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.configs').setup {
-        ensure_installed = { 'bash', 'c', 'html', 'lua', 'markdown', 'vim', 'vimdoc', 'rust' },
+        ensure_installed = { 'bash', 'c', 'html', 'lua', 'markdown', 'vim', 'vimdoc', 'rust', 'markdown_inline' },
         -- Autoinstall languages that are not installed
         auto_install = true,
         highlight = { enable = true },

@@ -38,5 +38,14 @@ fi
 sudo usermod -aG docker $USER
 echo "Added $USER to docker group"
 
+# nvm
+if [ -e ~/.nvm ]; then
+    echo "nvm is already installed"
+else
+    echo "Installing nvm..."
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+    echo "nvm installed"
+fi
+
 echo "Install complete"
 echo "You might want to restart your computer for changes to take effect"

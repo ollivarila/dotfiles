@@ -29,4 +29,6 @@ require('lazy').setup(plugins)
 -- Pick session if nvim started with no args
 utils.pick_session_if_empty_file()
 
+-- Some plugin messes up with the formatoptions
+vim.cmd 'set formatoptions-=cro'
 -- vim: ts=2 sts=2 sw=2 et
