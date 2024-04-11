@@ -2,10 +2,13 @@
 
 set -e
 
+REQUIRE_RESTART=false
+
 if [ "$USER" = "root" ]; then
     echo "Please run as non-root user, I will prompt for sudo"
     exit 1
 fi
+
 
 # Basic tools
 echo "Installing tools"
@@ -36,6 +39,7 @@ else
 
     sudo usermod -aG docker $USER
     echo "Added $USER to docker group"
+    REQUIRE_RESTART=true
 fi
 
 
@@ -46,7 +50,24 @@ else
     echo "Installing nvm..."
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
     echo "nvm installed"
+
+    echo "Configuring node..."
+    nvm install 20
+    nvm use 20
+    echo "Node configured"
+fi
+
+# pnpm
+if [ -e ~/.local/share/pnpm ]; then
+    echo "pnpm is already installed"
+else 
+    echo "Installing pnpm..."
+    curl -fsSL https://get.pnpm.io/install.sh | sh -
+    echo "pnpm installed"
 fi
 
 echo "Install complete"
-echo "You might want to restart your computer for changes to take effect"
+
+if [ $REQUIRE_RESTART = true ]; then
+    echo "Restart is required for all changes to take effect"
+fi
