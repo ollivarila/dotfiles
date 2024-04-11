@@ -9,7 +9,6 @@ return {
       'neovim/nvim-lspconfig',
     },
   },
-
   config = function()
     local rt = require 'rust-tools'
 
@@ -24,4 +23,5 @@ return {
       },
     }
   end,
+  ft = { 'rust' },
 }

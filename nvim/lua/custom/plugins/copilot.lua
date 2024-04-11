@@ -3,4 +3,5 @@ return {
   config = function()
     require('custom.keymaps').copilot()
   end,
+  event = 'VeryLazy',
 }

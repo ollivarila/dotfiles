@@ -33,10 +33,11 @@ else
     echo "Installing docker..."
     curl -fsSL https://get.docker.com | sh
     echo "Docker installed"
+
+    sudo usermod -aG docker $USER
+    echo "Added $USER to docker group"
 fi
 
-sudo usermod -aG docker $USER
-echo "Added $USER to docker group"
 
 # nvm
 if [ -e ~/.nvm ]; then

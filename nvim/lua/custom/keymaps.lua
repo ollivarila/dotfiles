@@ -4,28 +4,16 @@ end
 
 local M = {}
 function M.vscode()
-  -- FIXME: not working rn
-  -- vim.keymap.set('n', '<C-u>', '<C-u>zz')
-  -- vim.keymap.set('n', '<C-d>', '<C-d>zz')
-
   vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 end
 
 function M.defaults()
-  -- Edit config
-  -- vim.keymap.set('n', '<leader>co', function()
-  --   vim.cmd 'cd ~/.config/nvim'
-  --   vim.cmd 'e ~/.config/nvim/init.lua'
-  -- end)
-
   vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
   vim.keymap.set('n', '<C-u>', '<C-u>zz')
   vim.keymap.set('n', '<C-d>', '<C-d>zz')
 
   -- Diagnostic keymaps
-  -- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
-  -- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
   vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
   vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
@@ -160,9 +148,8 @@ function M.lsp(event)
   -- Opens a popup that displays documentation about the word under your cursor
   --  See `:help K` for why this keymap
   map('K', '<cmd>Lspsaga hover_doc<cr>', 'Hover Documentation')
+  map('fi', '<cmd>Lspsaga finder<cr>', 'Open [F][i]nder')
 
-  -- WARN: This is not Goto Definition, this is Goto Declaration.
-  --  For example, in C this would take you to the header
   map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 end
 
@@ -207,23 +194,6 @@ end
 function M.trouble()
   local trouble = require 'trouble'
   norm('<leader>xx', trouble.toggle, 'Toggle Trouble')
-  -- norm('d]', function()
-  --   trouble.open 'workspace_diagnostics'
-  --   trouble.next {
-  --     skip_groups = true,
-  --     jump = true,
-  --   }
-  --   trouble.close()
-  -- end, 'Next [D]iagnostic')
-  --
-  -- norm('d[', function()
-  --   trouble.open 'workspace_diagnostics'
-  --   trouble.previous {
-  --     skip_groups = true,
-  --     jump = true,
-  --   }
-  --   trouble.close()
-  -- end, 'Previous [D]iagnostic')
 end
 
 function M.mini_sessions()
@@ -282,7 +252,8 @@ function M.harpoon()
 end
 
 function M.copilot()
-  vim.g.copilot_enabled = 1
+  vim.g.copilot_enabled = 0
+  vim.cmd 'Copilot disable'
 
   norm('<leader>ct', function()
     local enabled = vim.g.copilot_enabled == 1
