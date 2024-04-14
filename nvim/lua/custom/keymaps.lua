@@ -8,6 +8,8 @@ function M.vscode()
 end
 
 function M.defaults()
+  vim.keymap.set('i', 'jj', '<ESC>')
+
   vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
   vim.keymap.set('n', '<C-u>', '<C-u>zz')

@@ -3,7 +3,22 @@
 return {
   {
     'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons', 'nvim-lua/plenary.nvim' },
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+      'nvim-lua/plenary.nvim',
+      {
+        'wthollingsworth/pomodoro.nvim',
+        dependencies = { 'MunifTanjim/nui.nvim' },
+        config = function()
+          require('pomodoro').setup {
+            time_work = 25,
+            time_break_short = 5,
+            time_break_long = 20,
+            timers_to_long_break = 4,
+          }
+        end,
+      },
+    },
     config = function()
       vim.g.version_component = {
         current_dir = '',
@@ -72,7 +87,22 @@ return {
           lualine_c = {},
           lualine_x = {},
           lualine_y = { 'filename', 'filetype', get_version },
-          lualine_z = { 'fileformat' },
+          lualine_z = {
+            'fileformat',
+            function()
+              local state = require('pomodoro').statusline()
+
+              -- if state cont*ains (inactive) then return empty string
+              if state:find 'inactive' then
+                return ''
+              end
+              -- trim default icon
+              local new_state = string.sub(state, 4)
+
+              -- add clock icon
+              return ' ' .. new_state
+            end,
+          },
         },
         inactive_sections = {
           lualine_a = {},

@@ -10,7 +10,6 @@ function M.defaults()
   vim.g.loaded_netrwPlugin = 1
 
   -- [[ Setting options ]]
-
   -- Make line numbers default
   vim.opt.number = true
   -- You can also add relative line numbers, for help with jumping.

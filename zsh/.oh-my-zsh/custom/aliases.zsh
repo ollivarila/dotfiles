@@ -15,3 +15,9 @@ alias clone='_cl() { git clone git@github.com:ollivarila/$1.git }; noglob _cl'
 
 alias dcu='docker compose up -d'
 alias dcd='docker compose down'
+
+# pnpm docs <package>
+alias pd='_pd() { pnpm docs $1 }; noglob _pd'
+
+# cargo doc -p <crate> --open
+alias cdo='_cdo() { cargo doc -p $1 --open }; noglob _cdo'

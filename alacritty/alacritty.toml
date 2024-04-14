@@ -5,8 +5,16 @@ import = [
 live_config_reload = true
 
 [window]
-decorations = "None"
+decorations = "Full"
+opacity = 0.69
+title = "Terminal"
+startup_mode = "Maximized"
 
 [font]
 normal = { family = "JetBrainsMonoNerdFont" }
+italic = { family = "JetBrainsMonoNerdFont"}
+bold = { family = "JetBrainsMonoNerdFont"}
 size = 14
+
+[mouse]
+hide_when_typing = true
