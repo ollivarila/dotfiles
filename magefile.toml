@@ -13,3 +13,11 @@ target_path = "~/.zshrc"
 ["alacritty"]
 target_path = "~/.config/alacritty"
 
+["icons"]
+target_path = "~/.icons"
+
+["themes"]
+target_path = "~/.themes"
+
+["fonts"]
+target_path = "~/.fonts"

@@ -38,6 +38,7 @@ fi
 if [ -e "$HOME/.cargo/bin/sccache" ]; then
   echo "Sccache is already installed"
 else
+  sudo apt install pkg-config libssl-devel # Required deps for scacche
   cargo install sccache
 fi
 
