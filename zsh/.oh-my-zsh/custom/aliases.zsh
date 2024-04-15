@@ -21,3 +21,6 @@ alias pd='_pd() { pnpm docs $1 }; noglob _pd'
 
 # cargo doc -p <crate> --open
 alias cdo='_cdo() { cargo doc -p $1 --open }; noglob _cdo'
+
+# alias bat to cat
+alias cat="bat"

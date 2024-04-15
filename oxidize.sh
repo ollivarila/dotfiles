@@ -50,3 +50,28 @@ else
 fi
 
 rustup component add rust-analyzer
+
+# My own cli tools
+
+# Setup-gh
+if [ -e "$HOME/.cargo/bin/setup-gh" ]; then
+  echo "Setup-gh already installed"
+else
+  cargo install --git https://github.com/ollivarila/setup-gh.git
+fi
+
+# Please
+if [ -e "$HOME/.cargo/bin/please" ]; then
+  echo "Please already installed"
+else
+  cargo install --git https://github.com/ollivarila/please.git
+fi
+
+
+# Mage
+if [ -e "$HOME/.cargo/bin/mage" ]; then
+  echo "Mage already installed"
+else
+  cargo install --git https://github.com/ollivarila/mage.git
+fi
+
