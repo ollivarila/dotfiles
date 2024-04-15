@@ -2,18 +2,23 @@
 
 set -e
 
-REQUIRE_RESTART=false
 
 if [ "$USER" = "root" ]; then
     echo "Please run as non-root user, I will prompt for sudo"
     exit 1
 fi
 
+REQUIRE_RESTART=false
+UNAME=$(uname -r | awk -F '-' '{print $NF}' )
 
 # Basic tools
 echo "Installing tools"
 sudo apt-get update > /dev/null
-sudo apt install -y curl git xclip
+if [ $UNAME = "WSL2" ]; then 
+    sudo apt install -y curl git
+else
+    sudo apt install -y curl git xclip
+fi
 echo "Tools installed\n"
 
 # lazygit
@@ -33,13 +38,17 @@ fi
 if [ -e /usr/bin/docker ]; then
     echo "Docker is already installed"
 else
-    echo "Installing docker..."
-    curl -fsSL https://get.docker.com | sh
-    echo "Docker installed"
+    if [ $UNAME = "WSL2" ]; then 
+        echo "Using WSL2 skipping docker"
+    else
+        echo "Installing docker..."
+        curl -fsSL https://get.docker.com | sh
+        echo "Docker installed"
 
-    sudo usermod -aG docker $USER
-    echo "Added $USER to docker group"
-    REQUIRE_RESTART=true
+        sudo usermod -aG docker $USER
+        echo "Added $USER to docker group"
+        REQUIRE_RESTART=true
+    fi
 fi
 
 
