@@ -1,7 +1,7 @@
 ./fonts/*.ttf
-./fonts/JetBrainsMono.zip
-./icons/Colloid-pastel
-./icons/Colloid-pastel-dark
-./icons/Colloid-pastel-light
-./icons/Posy_Cursor_Black
-./themes/GruvBox-Dark-BL
+./fonts/JetBrainsMono.zip/
+./icons/Colloid-pastel/
+./icons/Colloid-pastel-dark/
+./icons/Colloid-pastel-light/
+./icons/Posy_Cursor_Black/
+./themes/GruvBox-Dark-BL/
