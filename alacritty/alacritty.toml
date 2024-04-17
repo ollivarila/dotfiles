@@ -6,7 +6,7 @@ live_config_reload = true
 
 [window]
 decorations = "Full"
-opacity = 0.69
+opacity = 1
 title = "Terminal"
 startup_mode = "Maximized"
 

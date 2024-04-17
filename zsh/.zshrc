@@ -3,20 +3,19 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+export EDITOR="nvim"
 export PATH=$PATH:"/home/olli/.local/share/bob/nvim-bin"
 export PATH=$PATH:"/home/olli/.bin"
 . "$HOME/.cargo/env"
-
 
 if [ -f "$HOME/.cargo/bin/sccache" ]; then
   export RUSTC_WRAPPER="$HOME/.cargo/bin/sccache"
 else
   echo "sccache not found"
 fi
+
 plugins=(git z zsh-autosuggestions)
 
-# Accept autosuggestions with ctrl-space
-bindkey '^ ' autosuggest-accept
 
 # pnpm
 export PNPM_HOME="/home/olli/.local/share/pnpm"
@@ -116,3 +115,6 @@ source $ZSH/oh-my-zsh.sh
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#
+# Accept autosuggestions with ctrl-space
+bindkey '^ ' autosuggest-accept
