@@ -118,3 +118,8 @@ export NVM_DIR="$HOME/.nvm"
 #
 # Accept autosuggestions with ctrl-space
 bindkey '^ ' autosuggest-accept
+
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --zsh)"
+
+export BAT_THEME="gruvbox-dark"

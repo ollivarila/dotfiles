@@ -8,6 +8,11 @@ if [ "$USER" = "root" ]; then
     exit 1
 fi
 
+# Create ~/.bin if it doesn't exist
+if ! [ -d ~/.bin ]; then
+    mkdir ~/.bin
+fi
+
 REQUIRE_RESTART=false
 UNAME=$(uname -r | awk -F '-' '{print $NF}' )
 
@@ -15,9 +20,9 @@ UNAME=$(uname -r | awk -F '-' '{print $NF}' )
 echo "Installing tools"
 sudo apt-get update > /dev/null
 if [ $UNAME = "WSL2" ]; then 
-    sudo apt install -y curl git
+    sudo apt install -y curl git zsh
 else
-    sudo apt install -y curl git xclip
+    sudo apt install -y curl git xclip fzf zsh
 fi
 echo "Tools installed\n"
 
@@ -75,8 +80,21 @@ else
     echo "pnpm installed"
 fi
 
+# fzf
+if [ -e ~/.bin/fzf ]; then
+    echo "fzf is already installed"
+else
+    echo "Installing fzf..."
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install
+    mv ~/.fzf/bin/fzf ~/.bin/fzf
+    rm -rf ~/.fzf
+    echo "fzf installed"
+fi
+
 echo "Install complete"
 
 if [ $REQUIRE_RESTART = true ]; then
     echo "Restart is required for all changes to take effect"
 fi
+

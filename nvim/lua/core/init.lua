@@ -152,6 +152,8 @@ return {
         -- But for many setups, the LSP (`tsserver`) will work just fine
         tsserver = {},
         ['eslint-lsp'] = {},
+        ['tailwindcss'] = {},
+
         --
 
         lua_ls = {
@@ -242,6 +244,7 @@ return {
       -- Snippet Engine & its associated nvim-cmp source
       {
         'L3MON4D3/LuaSnip',
+        dependencies = { 'rafamadriz/friendly-snippets' },
         build = (function()
           -- Build Step is needed for regex support in snippets
           -- This step is not supported in many windows environments
@@ -270,6 +273,9 @@ return {
       -- See `:help cmp`
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
+
+      require('luasnip.loaders.from_vscode').load()
+
       luasnip.config.setup {}
 
       cmp.setup {

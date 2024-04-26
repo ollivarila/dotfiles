@@ -15,6 +15,7 @@ alias clone='_cl() { git clone git@github.com:ollivarila/$1.git }; noglob _cl'
 
 alias dcu='docker compose up -d'
 alias dcd='docker compose down'
+alias dcr='docker compose restart'
 
 # pnpm docs <package>
 alias pd='_pd() { pnpm docs $1 }; noglob _pd'
@@ -24,3 +25,5 @@ alias cdo='_cdo() { cargo doc -p $1 --open }; noglob _cdo'
 
 # alias bat to cat
 alias cat="bat"
+
+alias com='_com() { pnpm dlx shadcn-ui@latest add $1 }; noglob _com' 
