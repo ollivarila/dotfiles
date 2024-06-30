@@ -15,11 +15,12 @@
   - cursor
   - tophat
 - font
+- copy dotfiles you need
 
 ### Mac setup
 
 - run `./oxidize.sh`
 - install a font
 - take a look at `./install.sh` and see what is needed
-
+- copy dotfiles you need
 
