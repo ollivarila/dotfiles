@@ -52,8 +52,10 @@ fi
 
 rustup component add rust-analyzer
 
-# My own cli tools
+# Give any args to install extra tools
+[ -z $1 ] && echo 'Skipping personal tools' exit 0
 
+# My own cli tools
 # Setup-gh
 if [ -e "$HOME/.cargo/bin/setup-gh" ]; then
   echo "Setup-gh already installed"

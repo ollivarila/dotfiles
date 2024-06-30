@@ -11,8 +11,6 @@ end
 M.empty_filename = function()
   local file = M.current_file()
   local t = type(file)
-  -- print 'type of current file:'
-  -- print(t)
   if t == 'string' and file == '' then
     return true
   end
@@ -61,8 +59,6 @@ function M.get_plugins()
   -- Merge core and custom plugins
   local plugins = require 'core'
   local custom_plugins = {
-    -- require 'kickstart.plugins.debug',
-    require 'kickstart.plugins.indent_line',
     { import = 'custom.plugins' },
   }
 

@@ -19,7 +19,7 @@ keymaps.defaults()
 -- Load default autocmds
 autocmds.defaults()
 
--- Setup lazy.nvim
+-- Setup lazy.nvim plugin manager
 require 'core.setup_lazy'()
 
 -- [[ Configure and install plugins ]]

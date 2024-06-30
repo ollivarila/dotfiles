@@ -2,16 +2,11 @@
 
 set -e
 
-
-if [ "$USER" = "root" ]; then
-    echo "Please run as non-root user, I will prompt for sudo"
-    exit 1
-fi
+[ $(uname) = "Darwin" ] && echo "This script is linux only" && exit 1
+[ "$USER" = "root" ] && echo "Please run as non-root user, I will prompt for sudo" && exit 1
 
 # Create ~/.bin if it doesn't exist
-if ! [ -d ~/.bin ]; then
-    mkdir ~/.bin
-fi
+[ ! -d ~/.bin ] && mkdir ~/.bin
 
 REQUIRE_RESTART=false
 UNAME=$(uname -r | awk -F '-' '{print $NF}' )

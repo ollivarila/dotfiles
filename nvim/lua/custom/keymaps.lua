@@ -56,6 +56,11 @@ function M.defaults()
 
   -- Delete buffer
   norm('<leader>dd', '<cmd>bdelete<cr>', 'Delete buffer')
+
+  -- Open in vscode (file)
+  norm('<leader>cf', '<cmd>!code %<cr>', 'Open vscode in current file')
+  -- Open in vscode (current dir)
+  norm('<leader>c.', '<cmd>!code .<cr>', 'Open vscode in current directory')
 end
 
 function M.telescope()
@@ -160,7 +165,7 @@ function M.nvim_tree()
 
   local toggle_tree = tree_api.tree.toggle
 
-  vim.keymap.set('n', '<leader>t', function()
+  vim.keymap.set('n', '<leader><tab>', function()
     toggle_tree {
       find_file = true,
     }

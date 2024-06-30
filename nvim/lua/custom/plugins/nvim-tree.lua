@@ -4,4 +4,6 @@ return {
     require('nvim-tree').setup {}
     require('custom.keymaps').nvim_tree()
   end,
+  event = 'VeryLazy',
+  enabled = false,
 }
