@@ -2,11 +2,8 @@
 
 ## Stuff to remember
 
-### Clean setup
+### Linux setup
 
-- install [mage](https://github.com/ollivarila/mage) (need cargo for this)
-- clone repo with `mage clone ollivarila/dotfiles` (ssh-keys need to be set)
-- run `mage link`
 - run `./oxidize.sh`
 - run `./install.sh`
 - install gnome-shell extensions
@@ -17,15 +14,12 @@
   - theme
   - cursor
   - tophat
+- font
 
-Quick copy paste:
-```sh
-mage clone ollivarila/dotfiles
-mage link
-~/.mage/oxidize.sh
-~/.mage/install.sh
-```
+### Mac setup
 
-## Plans
+- run `./oxidize.sh`
+- install a font
+- take a look at `./install.sh` and see what is needed
 
-- create and host an quick setup script (similiar how you install rust)
+
