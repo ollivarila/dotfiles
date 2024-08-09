@@ -26,6 +26,7 @@ require 'core.setup_lazy'()
 local plugins = utils.get_plugins()
 require('lazy').setup(plugins)
 
+vim.cmd 'colorscheme sonokai'
 -- Some plugin messes up with the formatoptions
 vim.cmd 'set formatoptions-=cro'
 -- vim: ts=2 sts=2 sw=2 et

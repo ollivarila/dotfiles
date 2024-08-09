@@ -6,9 +6,6 @@ return {
     'folke/tokyonight.nvim',
     lazy = false,
     priority = 1000,
-    -- config = function()
-    --   vim.cmd 'colorscheme tokyonight-night'
-    -- end,
   },
   {
     'ellisonleao/gruvbox.nvim',
@@ -39,7 +36,6 @@ return {
         dim_inactive = false,
         transparent_mode = false,
       }
-      vim.cmd 'colorscheme gruvbox'
     end,
     opts = {},
   },
