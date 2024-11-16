@@ -200,7 +200,9 @@ end
 
 function M.trouble()
   local trouble = require 'trouble'
-  norm('<leader>xx', trouble.toggle, 'Toggle Trouble')
+  norm('<leader>xx', function()
+    trouble.toggle 'diagnostics'
+  end, 'Toggle Trouble')
 end
 
 function M.mini_sessions()
