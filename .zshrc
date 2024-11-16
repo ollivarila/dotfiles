@@ -25,14 +25,12 @@ path () {
   export PATH=$PATH:"$1"
 }
 
-path "$HOME/.local/share/bob/nvim-bin"
 path "$HOME/.cargo/bin"
 path "$HOME/.bin"
-path "/opt/homebrew/opt/postgresql@13/bin"
 
 export EDITOR="nvim"
 
-. "$HOME/.cargo/env"
+[[ -z "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
 
 # Plugins
 
@@ -99,9 +97,19 @@ alias dcd='docker compose down'
 alias dcr='docker compose restart'
 alias v='nvim'
 alias olli='export AWS_PROFILE=olli'
+alias rb='sudo nixos-rebuild switch'
+alias ..="cd .."
+alias ...="cd ../.."
+
+work () {
+  source "$HOME/.work.zsh" 
+  path "$(yarn global bin)"
+  path "$HOME/.local/share/bob/nvim-bin"
+  path "/opt/homebrew/opt/postgresql@13/bin"
+}
 
 # Source work config
-[ $(whoami) = 'olli.varila' ] && source "$HOME/.work.zsh"
+[ $(whoami) = 'olli.varila' ] && work
 
 # Ffz shell integration
 eval "$(fzf --zsh)"
@@ -111,7 +119,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm
 [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 
-path "$(yarn global bin)"
 
 git_current_branch () {
   git rev-parse --abbrev-ref HEAD
