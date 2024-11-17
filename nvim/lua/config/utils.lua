@@ -57,16 +57,21 @@ end
 
 function M.get_plugins()
   -- Merge core and custom plugins
-  local plugins = require 'core'
+  -- local plugins = require 'config.plugins'
   local custom_plugins = {
-    { import = 'custom.plugins' },
+    { import = 'config.plugins' },
   }
 
-  for _, value in pairs(custom_plugins) do
-    table.insert(plugins, value)
-  end
+  -- for _, value in pairs(custom_plugins) do
+  --   table.insert(plugins, value)
+  -- end
 
-  return plugins
+  return custom_plugins
+end
+
+function M.get_plugin_names()
+  -- TODO: read all plugin file fields form dirs
+  return { 'nvim-dap-ui' }
 end
 
 function M.get_version_command()

@@ -87,9 +87,16 @@ return { -- Autocompletion
         end, { 'i', 's' }),
       },
       sources = {
-        { name = 'nvim_lsp' },
+        {
+          name = 'nvim_lsp',
+          entry_filter = function(entry, ctx)
+            -- Disable lsp provided snippets in rust atleast
+            return ctx.filetype ~= 'rust' or require('cmp').lsp.CompletionItemKind.Snippet ~= entry:get_kind()
+          end,
+        },
         { name = 'luasnip' },
         { name = 'path' },
+        { name = 'lazydev' },
       },
     }
   end,

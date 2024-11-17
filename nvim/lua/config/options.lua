@@ -69,6 +69,7 @@ function M.defaults()
   vim.opt.hlsearch = true
 
   vim.opt.termguicolors = true
+  vim.opt.fillchars:append { eob = ' ' }
 end
 
 return M

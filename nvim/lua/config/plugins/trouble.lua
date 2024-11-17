@@ -4,6 +4,6 @@ return {
     require('trouble').setup {
       position = 'right',
     }
-    require('custom.keymaps').trouble()
+    require('config.keymaps').trouble()
   end,
 }

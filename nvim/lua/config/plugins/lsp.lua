@@ -1,3 +1,4 @@
+local utils = require 'config.utils'
 return { -- LSP Configuration & Plugins
   'neovim/nvim-lspconfig',
   dependencies = {
@@ -5,13 +6,20 @@ return { -- LSP Configuration & Plugins
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
-
+    {
+      'folke/neodev.nvim',
+      opts = {
+        library = {
+          plugins = true, -- utils.get_plugin_names(),
+        },
+      },
+    },
     -- Useful status updates for LSP.
     -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
     { 'j-hui/fidget.nvim', opts = {} },
   },
   config = function()
-    local keymaps = require 'custom.keymaps'
+    local keymaps = require 'config.keymaps'
 
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
@@ -65,6 +73,7 @@ return { -- LSP Configuration & Plugins
       --
       -- But for many setups, the LSP (`tsserver`) will work just fine
       ts_ls = {},
+      ['nil'] = {},
       ['eslint-lsp'] = {},
       ['tailwindcss'] = {},
       ['bash-language-server'] = {},

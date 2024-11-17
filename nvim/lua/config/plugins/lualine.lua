@@ -16,7 +16,7 @@ return {
         return vim.g.version_component.version
       end
 
-      local utils = require 'core.utils'
+      local utils = require 'config.utils'
       local Job = require 'plenary.job'
 
       local function version_job()

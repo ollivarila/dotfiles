@@ -4,5 +4,4 @@ return {
     'stevearc/dressing.nvim',
     opts = {},
   },
-  { import = 'core.plugins' },
 }

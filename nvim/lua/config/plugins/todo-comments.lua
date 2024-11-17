@@ -3,7 +3,7 @@ return {
   dependencies = { 'nvim-lua/plenary.nvim' },
   config = function()
     require('todo-comments').setup()
-    require('custom.keymaps').todo_comments()
+    require('config.keymaps').todo_comments()
   end,
   opts = {
     -- your configuration comes here

@@ -5,6 +5,6 @@ return {
   },
   config = function()
     require('harpoon').setup()
-    require('custom.keymaps').harpoon()
+    require('config.keymaps').harpoon()
   end,
 }

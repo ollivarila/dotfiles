@@ -1,6 +1,7 @@
 local norm = function(keymap, action, desc)
   vim.keymap.set('n', keymap, action, { desc = desc })
 end
+local utils = require 'config.utils'
 
 local M = {}
 function M.vscode()
@@ -61,6 +62,16 @@ function M.defaults()
   norm('<leader>cf', '<cmd>!code %<cr>', 'Open vscode in current file')
   -- Open in vscode (current dir)
   norm('<leader>c.', '<cmd>!code .<cr>', 'Open vscode in current directory')
+
+  vim.api.nvim_create_user_command('BufDelOthers', function()
+    local bufs = vim.api.nvim_list_bufs()
+    local current_buf = vim.api.nvim_get_current_buf()
+    for _, i in ipairs(bufs) do
+      if i ~= current_buf then
+        vim.api.nvim_buf_delete(i, {})
+      end
+    end
+  end, {})
 end
 
 function M.telescope()
@@ -79,7 +90,6 @@ function M.telescope()
 
   -- Open file in vsplit
   vim.keymap.set('n', '<C-right>', function()
-    local utils = require 'core.utils'
     local filename = utils.current_file()
     if filename == 'NvimTree_1' then
       vim.print 'Skill issue...'
@@ -272,6 +282,14 @@ function M.copilot()
     vim.cmd('Copilot ' .. cmd)
     vim.notify('Copilot ' .. cmd .. 'd')
   end, '[T]oggle [C]opilot')
+end
+
+function M.debug()
+  local dapui = require 'dapui'
+  local toggle = function()
+    dapui.toggle()
+  end
+  norm('<leader>db', toggle, 'Toggle debug ui')
 end
 
 return M

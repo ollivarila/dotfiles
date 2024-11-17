@@ -50,7 +50,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     pcall(require('telescope').load_extension, 'ui-select')
 
     -- Load telescope keymaps
-    local keymaps = require 'custom.keymaps'
+    local keymaps = require 'config.keymaps'
     keymaps.telescope()
   end,
 }

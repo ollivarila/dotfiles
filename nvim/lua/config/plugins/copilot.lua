@@ -1,8 +1,7 @@
 return {
   'github/copilot.vim',
   config = function()
-    require('custom.keymaps').copilot()
+    require('config.keymaps').copilot()
   end,
   event = 'VeryLazy',
 }
-

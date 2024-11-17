@@ -1,13 +1,13 @@
-local keymaps = require 'custom.keymaps'
-local options = require 'custom.options'
-local autocmds = require 'custom.autocmds'
+local keymaps = require 'config.keymaps'
+local options = require 'config.options'
+local autocmds = require 'config.autocmds'
 -- Load vscode config
 if vim.g.vscode then
   keymaps.vscode()
   return
 end
 
-local utils = require 'core.utils'
+local utils = require 'config.utils'
 
 -- NOTE: Default settings contain settings that are plugin agnostic
 -- They also might need to be loaded before any plugins
@@ -20,7 +20,7 @@ keymaps.defaults()
 autocmds.defaults()
 
 -- Setup lazy.nvim plugin manager
-require 'core.setup_lazy'()
+require 'config.setup_lazy'()
 
 -- [[ Configure and install plugins ]]
 local plugins = utils.get_plugins()

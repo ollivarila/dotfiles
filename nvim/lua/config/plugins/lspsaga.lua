@@ -7,7 +7,7 @@ return {
       },
       hover = {},
     }
-    require('custom.keymaps').lsp_saga()
+    require('config.keymaps').lsp_saga()
   end,
   dependencies = {
     'nvim-treesitter/nvim-treesitter',

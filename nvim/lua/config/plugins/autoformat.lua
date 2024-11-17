@@ -12,6 +12,7 @@ return { -- Autoformat
       json = { 'jq' },
       javascript = { 'prettier' },
       typescript = { 'prettier' },
+      nix = { 'nixfmt' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "", "black" },
       --
@@ -20,5 +21,5 @@ return { -- Autoformat
       -- javascript = { { "prettierd", "prettier" } },
     },
   },
-  tag = 'v7.1.0', -- NOTE: upgrade when neovim 0.10
+  tag = 'v7.1.0', -- TODO: upgrade when neovim 0.10
 }

@@ -4,7 +4,7 @@ return { -- Collection of various small independent plugins/modules
     'stevearc/dressing.nvim',
   },
   config = function()
-    local keymaps = require 'custom.keymaps'
+    local keymaps = require 'config.keymaps'
     -- Better Around/Inside textobjects
     --
     -- Examples:
