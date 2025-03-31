@@ -46,23 +46,6 @@ function M.defaults()
   -- Lazygit
   vim.keymap.set('n', '<leader>g', '<cmd>LazyGit<cr>', { desc = 'Open Lazy[G]it' })
 
-  -- Open bunch of stuff
-  norm('<leader>nla', '<cmd>Lazy<cr>', 'Open [L][A]zy')
-  norm('<leader>nma', '<cmd>Mason<cr>', 'Open [M][A]son')
-  norm('<leader>nls', '<cmd>LspInfo<cr>', 'Open [L][S]pInfo')
-
-  -- Change buffers
-  norm('<leader>l', '<cmd>bNext<cr>', 'Next buffer')
-  norm('<leader>h', '<cmd>bprevious<cr>', 'Previous buffer')
-
-  -- Delete buffer
-  norm('<leader>dd', '<cmd>bdelete<cr>', 'Delete buffer')
-
-  -- Open in vscode (file)
-  norm('<leader>cf', '<cmd>!code %<cr>', 'Open vscode in current file')
-  -- Open in vscode (current dir)
-  norm('<leader>c.', '<cmd>!code .<cr>', 'Open vscode in current directory')
-
   vim.api.nvim_create_user_command('BufDelOthers', function()
     local bufs = vim.api.nvim_list_bufs()
     local current_buf = vim.api.nvim_get_current_buf()

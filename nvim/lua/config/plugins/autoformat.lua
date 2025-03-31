@@ -21,5 +21,5 @@ return { -- Autoformat
       -- javascript = { { "prettierd", "prettier" } },
     },
   },
-  tag = 'v7.1.0', -- TODO: upgrade when neovim 0.10
+  -- tag = 'v7.1.0', -- TODO: upgrade when neovim 0.10
 }

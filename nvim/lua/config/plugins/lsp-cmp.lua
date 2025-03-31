@@ -16,6 +16,18 @@ return { -- Autocompletion
         return 'make install_jsregexp'
       end)(),
     },
+    {
+      'folke/lazydev.nvim',
+      ft = 'lua', -- only load on lua files
+      opts = {
+        library = {
+          -- See the configuration section for more details
+          -- Load luvit types when the `vim.uv` word is found
+          { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+        },
+      },
+      enabled = true, --TODO: Should work in 0.10.0
+    },
     'saadparwaiz1/cmp_luasnip',
 
     -- Adds other completion capabilities.
@@ -96,7 +108,7 @@ return { -- Autocompletion
         },
         { name = 'luasnip' },
         { name = 'path' },
-        { name = 'lazydev' },
+        { name = 'lazydev', group_index = 0 },
       },
     }
   end,

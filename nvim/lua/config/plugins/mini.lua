@@ -26,7 +26,7 @@ return { -- Collection of various small independent plugins/modules
     }
 
     -- Simple tabline
-    require('mini.tabline').setup()
+    -- require('mini.tabline').setup()
 
     -- Sessions
     require('mini.sessions').setup {

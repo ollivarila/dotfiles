@@ -56,15 +56,9 @@ M.pick_session_if_empty_file = function()
 end
 
 function M.get_plugins()
-  -- Merge core and custom plugins
-  -- local plugins = require 'config.plugins'
   local custom_plugins = {
     { import = 'config.plugins' },
   }
-
-  -- for _, value in pairs(custom_plugins) do
-  --   table.insert(plugins, value)
-  -- end
 
   return custom_plugins
 end

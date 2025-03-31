@@ -1,11 +1,6 @@
 local keymaps = require 'config.keymaps'
 local options = require 'config.options'
 local autocmds = require 'config.autocmds'
--- Load vscode config
-if vim.g.vscode then
-  keymaps.vscode()
-  return
-end
 
 local utils = require 'config.utils'
 
@@ -24,6 +19,7 @@ require 'config.setup_lazy'()
 
 -- [[ Configure and install plugins ]]
 local plugins = utils.get_plugins()
+
 require('lazy').setup(plugins)
 
 vim.cmd 'colorscheme gruvbox'

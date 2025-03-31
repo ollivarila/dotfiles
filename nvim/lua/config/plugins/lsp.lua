@@ -6,16 +6,7 @@ return { -- LSP Configuration & Plugins
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
-    {
-      'folke/neodev.nvim',
-      opts = {
-        library = {
-          plugins = true, -- utils.get_plugin_names(),
-        },
-      },
-    },
     -- Useful status updates for LSP.
-    -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
     { 'j-hui/fidget.nvim', opts = {} },
   },
   config = function()

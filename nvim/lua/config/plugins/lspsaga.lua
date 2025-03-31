@@ -2,9 +2,7 @@ return {
   'nvimdev/lspsaga.nvim',
   config = function()
     require('lspsaga').setup {
-      ui = {
-        border = 'none',
-      },
+      ui = {},
       hover = {},
     }
     require('config.keymaps').lsp_saga()
@@ -13,4 +11,5 @@ return {
     'nvim-treesitter/nvim-treesitter',
     'nvim-tree/nvim-web-devicons',
   },
+  enabled = true,
 }
