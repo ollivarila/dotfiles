@@ -47,4 +47,5 @@ return { -- Collection of various small independent plugins/modules
     -- Comment lines
     require('mini.comment').setup()
   end,
+  event = 'VeryLazy',
 }

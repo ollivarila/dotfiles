@@ -20,4 +20,5 @@ return { -- Highlight, edit, and navigate code
       return ft_to_lang(ft)
     end
   end,
+  event = 'BufAdd',
 }

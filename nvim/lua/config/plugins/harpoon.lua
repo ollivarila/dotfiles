@@ -7,4 +7,5 @@ return {
     require('harpoon').setup()
     require('config.keymaps').harpoon()
   end,
+  event = { 'BufAdd', 'InsertEnter' },
 }

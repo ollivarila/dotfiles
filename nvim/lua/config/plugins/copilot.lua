@@ -3,5 +3,5 @@ return {
   config = function()
     require('config.keymaps').copilot()
   end,
-  event = 'VeryLazy',
+  event = 'InsertEnter',
 }
