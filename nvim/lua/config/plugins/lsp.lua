@@ -1,5 +1,5 @@
 return { -- LSP Configuration & Plugins
-  event = { 'BufAdd', 'InsertEnter', 'CursorMoved' },
+  event = { 'BufAdd', 'InsertEnter' },
   'neovim/nvim-lspconfig',
   dependencies = {
     -- Automatically install LSPs and related tools to stdpath for neovim
