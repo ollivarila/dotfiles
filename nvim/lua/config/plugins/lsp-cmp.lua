@@ -1,6 +1,6 @@
 return { -- Autocompletion
   'hrsh7th/nvim-cmp',
-  event = 'VeryLazy',
+  event = 'InsertEnter',
   dependencies = {
     -- Snippet Engine & its associated nvim-cmp source
     {
@@ -26,7 +26,6 @@ return { -- Autocompletion
           { path = 'luvit-meta/library', words = { 'vim%.uv' } },
         },
       },
-      enabled = true, --TODO: Should work in 0.10.0
     },
     'saadparwaiz1/cmp_luasnip',
 

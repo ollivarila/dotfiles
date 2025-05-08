@@ -1,11 +1,16 @@
 return {
   {
     'sainnhe/sonokai',
+    enabled = false,
   },
   {
     'folke/tokyonight.nvim',
     lazy = false,
     priority = 1000,
+    enabled = false,
+  },
+  {
+    'wincent/base16-nvim',
   },
   {
     'ellisonleao/gruvbox.nvim',

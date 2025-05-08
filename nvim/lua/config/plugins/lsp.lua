@@ -1,10 +1,12 @@
-local utils = require 'config.utils'
 return { -- LSP Configuration & Plugins
   'neovim/nvim-lspconfig',
   dependencies = {
     -- Automatically install LSPs and related tools to stdpath for neovim
-    'williamboman/mason.nvim',
-    'williamboman/mason-lspconfig.nvim',
+    -- FIXME: something broke with recent version of these two
+    -- https://github.com/LazyVim/LazyVim/issues/6039
+    -- https://github.com/mason-org/mason.nvim/releases/tag/v2.0.0
+    { 'williamboman/mason.nvim', version = '^1.0.0' },
+    { 'williamboman/mason-lspconfig.nvim', version = '^1.0.0' },
     'WhoIsSethDaniel/mason-tool-installer.nvim',
     -- Useful status updates for LSP.
     { 'j-hui/fidget.nvim', opts = {} },
@@ -42,9 +44,6 @@ return { -- LSP Configuration & Plugins
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
     local servers = {
-      -- clangd = {},
-      -- gopls = {},
-      -- pyright = {},
       -- rust_analyzer = {
       --   on_attach = function(client, bufnr)
       --     vim.lsp.inlay_hint.enable(bufnr)
@@ -106,7 +105,6 @@ return { -- LSP Configuration & Plugins
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
       'stylua', -- Used to format lua code
-      'cpptools', -- For debugging
       'jq', -- Json processor
       'prettier', -- Js formatter
     })

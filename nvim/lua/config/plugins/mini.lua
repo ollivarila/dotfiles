@@ -21,9 +21,9 @@ return { -- Collection of various small independent plugins/modules
     require('mini.surround').setup()
 
     -- Automatic {} etc
-    require('mini.pairs').setup {
-      ["'"] = { action = 'closeopen', pair = "''", neigh_pattern = '[^%a\\].', register = { cr = false } },
-    }
+    -- require('mini.pairs').setup {
+    --   ["'"] = { action = 'closeopen', pair = "''", neigh_pattern = '[^%a\\].', register = { cr = false } },
+    -- }
 
     -- Simple tabline
     -- require('mini.tabline').setup()
