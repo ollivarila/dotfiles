@@ -11,5 +11,5 @@ return {
     'nvim-treesitter/nvim-treesitter',
     'nvim-tree/nvim-web-devicons',
   },
-  event = 'BufAdd',
+  event = { 'BufAdd', 'InsertEnter', 'CursorMoved' },
 }

@@ -4,6 +4,5 @@ return {
     require('nvim-tree').setup {}
     require('config.keymaps').nvim_tree()
   end,
-  event = 'VeryLazy',
-  enabled = true,
+  event = { 'BufAdd', 'InsertEnter', 'CursorMoved' },
 }
