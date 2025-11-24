@@ -68,6 +68,7 @@ return { -- LSP Configuration & Plugins
       ['eslint-lsp'] = {},
       ['tailwindcss'] = {},
       ['bash-language-server'] = {},
+      clojure_lsp = {},
       lua_ls = {
         settings = {
           Lua = {

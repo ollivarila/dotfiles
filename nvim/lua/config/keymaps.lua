@@ -275,4 +275,8 @@ function M.debug()
   norm('<leader>db', toggle, 'Toggle debug ui')
 end
 
+function M.clojure()
+  norm('<ENTER>', '<leader>emt', 'Evaluate form at mark t') -- for running tests
+end
+
 return M
