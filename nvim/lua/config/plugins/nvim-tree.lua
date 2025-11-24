@@ -4,5 +4,4 @@ return {
     require('nvim-tree').setup {}
     require('config.keymaps').nvim_tree()
   end,
-  event = { 'BufAdd', 'InsertEnter' },
 }
