@@ -6,8 +6,8 @@ return { -- LSP Configuration & Plugins
     -- FIXME: something broke with recent version of these two
     -- https://github.com/LazyVim/LazyVim/issues/6039
     -- https://github.com/mason-org/mason.nvim/releases/tag/v2.0.0
-    { 'williamboman/mason.nvim', version = '^1.0.0' },
-    { 'williamboman/mason-lspconfig.nvim', version = '^1.0.0' },
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
     -- Useful status updates for LSP.
     { 'j-hui/fidget.nvim', opts = {} },
