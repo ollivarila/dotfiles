@@ -125,3 +125,9 @@ git_current_branch () {
 }
 
 export BAT_THEME="gruvbox-dark"
+
+export PNPM_HOME="/home/olli/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
