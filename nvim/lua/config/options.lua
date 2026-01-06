@@ -70,6 +70,8 @@ function M.defaults()
 
   vim.opt.termguicolors = true
   vim.opt.fillchars:append { eob = ' ' }
+
+  vim.lsp.inlay_hint.enable(true)
 end
 
 return M
