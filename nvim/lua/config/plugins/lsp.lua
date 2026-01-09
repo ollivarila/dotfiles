@@ -1,18 +1,20 @@
-return { -- LSP Configuration & Plugins
+-- This file contains some global configuration related to all lsps
+-- and automatic setup & install configuration of lsps
+return {
   event = { 'BufAdd', 'InsertEnter' },
+  -- Default configurations for many lsps
   'neovim/nvim-lspconfig',
   dependencies = {
-    -- Automatically install LSPs and related tools to stdpath for neovim
-    -- FIXME: something broke with recent version of these two
-    -- https://github.com/LazyVim/LazyVim/issues/6039
-    -- https://github.com/mason-org/mason.nvim/releases/tag/v2.0.0
+    -- Package manager for lsps
     'williamboman/mason.nvim',
+    -- Automatic lsp install & setup
     'williamboman/mason-lspconfig.nvim',
-    'WhoIsSethDaniel/mason-tool-installer.nvim',
     -- Useful status updates for LSP.
     { 'j-hui/fidget.nvim', opts = {} },
   },
   config = function()
+    -- lsp config dir configs -> nvim-lspconfig defaults -> mason-lspconfig calls vim.lsp.config and vim.lsp.enable
+
     local keymaps = require 'config.keymaps'
 
     vim.api.nvim_create_autocmd('LspAttach', {
@@ -44,86 +46,30 @@ return { -- LSP Configuration & Plugins
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
-    local servers = {
-      -- rust_analyzer = {
-      --   on_attach = function(client, bufnr)
-      --     vim.lsp.inlay_hint.enable(bufnr)
-      --   end,
-      --   settings = {
-      --     inlayHints = {
-      --       enable = true,
-      --       parameterHintsPrefix = '<- ',
-      --       otherHintsPrefix = '=> ',
-      --     },
-      --   },
-      -- },
-      -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-      --
-      -- Some languages (like typescript) have entire language plugins that can be useful:
-      --    https://github.com/pmizio/typescript-tools.nvim
-      --
-      -- But for many setups, the LSP (`tsserver`) will work just fine
-      ts_ls = {},
-      ['nil'] = {},
-      ['eslint-lsp'] = {},
-      ['tailwindcss'] = {},
-      ['bash-language-server'] = {},
-      clojure_lsp = {},
-      lua_ls = {
-        settings = {
-          Lua = {
-            runtime = { version = 'LuaJIT' },
-            workspace = {
-              checkThirdParty = true,
-              -- Tells lua_ls where to find all the Lua files that you have loaded
-              -- for your neovim configuration.
-              library = {
-                '${3rd}/luv/library',
-                unpack(vim.api.nvim_get_runtime_file('', true)),
-              },
-              -- If lua_ls is really slow on your computer, you can try this instead:
-              -- library = { vim.env.VIMRUNTIME },
-            },
-            completion = {
-              callSnippet = 'Replace',
-            },
-            -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-            -- diagnostics = { disable = { 'missing-fields' } },
-          },
-        },
-      },
-    }
+    vim.lsp.config('*', {
+      capabilities = capabilities,
+    })
 
-    -- Ensure the servers and tools above are installed
-    --  To check the current status of installed tools and/or manually install
-    --  other tools, you can run
-    --    :Mason
-    --
-    --  You can press `g?` for help in this menu
     require('mason').setup()
 
-    -- You can add other tools here that you want Mason to install
-    -- for you, so that they are available from within Neovim.
-    local ensure_installed = vim.tbl_keys(servers or {})
-    vim.list_extend(ensure_installed, {
-      'stylua', -- Used to format lua code
-      'jq', -- Json processor
-      'prettier', -- Js formatter
-    })
-    require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+    local ensure_installed = {
+      'ts_ls',
+      'nil_ls',
+      'eslint',
+      'tailwindcss',
+      'bashls',
+      'clojure_lsp',
+      'lua_ls',
+      'taplo',
+      'stylua',
+      -- NOTE: theres are not available to install via `mason-lspconfig` because there is no configuration for that in the `nvim-lspconfig`
+      -- 'prettier', -- file formatter for many formats like js
+      -- 'jq', -- Json processor
+    }
 
+    -- This plugin installs all the listed lsps, configures and enables them
     require('mason-lspconfig').setup {
-      handlers = {
-        function(server_name)
-          local server = servers[server_name] or {}
-          -- This handles overriding only values explicitly passed
-          -- by the server configuration above. Useful when disabling
-          -- certain features of an LSP (for example, turning off formatting for tsserver)
-          server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-          vim.lsp.config(server_name, server)
-          vim.lsp.enable(server_name)
-        end,
-      },
+      ensure_installed = ensure_installed,
     }
   end,
 }

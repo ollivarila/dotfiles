@@ -72,6 +72,11 @@ function M.defaults()
   vim.opt.fillchars:append { eob = ' ' }
 
   vim.lsp.inlay_hint.enable(true)
+  vim.diagnostic.config { virtual_text = true }
+  vim.filetype.add {
+    extension = { foo = 'foo' },
+  }
+  vim.treesitter.language.register('foo', { 'foo' })
 end
 
 return M

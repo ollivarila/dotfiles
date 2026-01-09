@@ -13,5 +13,11 @@ return {
         vim.highlight.on_yank()
       end,
     })
+    vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+      pattern = '*.foo',
+      callback = function()
+        vim.bo.filetype = 'foo'
+      end,
+    })
   end,
 }
