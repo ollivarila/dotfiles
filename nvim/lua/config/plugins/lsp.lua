@@ -50,15 +50,19 @@ return {
       capabilities = capabilities,
     })
 
+    vim.lsp.config('ts_ls', {
+      on_attach = function(client)
+        client.server_capabilities.documentFormattingProvider = false -- 0.8 and later
+      end,
+    })
+
     require('mason').setup()
 
     local ensure_installed = {
       'ts_ls',
-      'nil_ls',
       'eslint',
       'tailwindcss',
       'bashls',
-      'clojure_lsp',
       'lua_ls',
       'taplo',
       'stylua',
@@ -66,6 +70,15 @@ return {
       -- 'prettier', -- file formatter for many formats like js
       -- 'jq', -- Json processor
     }
+
+    local utils = require 'config.utils'
+
+    if not utils.is_work() then
+      ensure_installed = vim.tbl_extend('force', ensure_installed, {
+        'clojure_lsp',
+        'nil_ls',
+      })
+    end
 
     -- This plugin installs all the listed lsps, configures and enables them
     require('mason-lspconfig').setup {

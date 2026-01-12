@@ -138,4 +138,8 @@ function M.set_version(version)
   vim.g.version_component = version_component
 end
 
+function M.is_work()
+  return os.getenv 'WORK' == 'true'
+end
+
 return M

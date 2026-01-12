@@ -1,25 +1,23 @@
-return { -- Autoformat
+return {
   'stevearc/conform.nvim',
   opts = {
-    notify_on_error = false,
+    notify_on_error = true,
     format_on_save = {
       timeout_ms = 500,
-      lsp_fallback = true,
+      lsp_fallback = false,
     },
     formatters_by_ft = {
       lua = { 'stylua' },
       sql = { 'sql_formatter' },
       json = { 'jq' },
-      javascript = { 'prettier' },
-      typescript = { 'prettier' },
+      typescriptreact = {},
+      typescript = {},
+      javascript = {},
+      javascriptreact = {},
       nix = { 'nixfmt' },
-      -- Conform can also run multiple formatters sequentially
-      -- python = { "", "black" },
-      --
-      -- You can use a sub-list to tell conform to run *until* a formatter
-      -- is found.
-      -- javascript = { { "prettierd", "prettier" } },
+    },
+    default_format_opts = {
+      lsp_format = 'fallback',
     },
   },
-  -- tag = 'v7.1.0', -- TODO: upgrade when neovim 0.10
 }
