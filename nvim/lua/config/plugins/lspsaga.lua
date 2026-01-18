@@ -4,6 +4,11 @@ return {
     require('lspsaga').setup {
       ui = {},
       hover = {},
+      outline = {
+        win_position = 'right',
+        win_width = 40,
+        detail = false,
+      },
     }
     require('config.keymaps').lsp_saga()
   end,

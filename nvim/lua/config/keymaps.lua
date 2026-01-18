@@ -129,7 +129,7 @@ function M.lsp(event)
 
   -- Fuzzy find all the symbols in your current document.
   --  Symbols are things like variables, functions, types, etc.
-  map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+  map('<leader>fs', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
 
   -- Fuzzy find all the symbols in your current workspace
   --  Similar to document symbols, except searches over your whole project.
@@ -147,6 +147,7 @@ function M.lsp(event)
   --  See `:help K` for why this keymap
   map('K', '<cmd>Lspsaga hover_doc<cr>', 'Hover Documentation')
   map('fi', '<cmd>Lspsaga finder<cr>', 'Open [F][i]nder')
+  map('<leader>o', '<cmd>Lspsaga outline<cr>', 'Open outline')
 
   map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 end
