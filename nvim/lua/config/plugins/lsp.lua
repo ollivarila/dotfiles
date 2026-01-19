@@ -66,6 +66,7 @@ return {
       'lua_ls',
       'taplo',
       'stylua',
+      'marksman',
       -- NOTE: theres are not available to install via `mason-lspconfig` because there is no configuration for that in the `nvim-lspconfig`
       -- 'prettier', -- file formatter for many formats like js
       -- 'jq', -- Json processor
