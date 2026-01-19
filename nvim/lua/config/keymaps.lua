@@ -44,6 +44,8 @@ function M.defaults()
   -- Lazygit
   vim.keymap.set('n', '<leader>g', '<cmd>LazyGit<cr>', { desc = 'Open Lazy[G]it' })
 
+  vim.keymap.set('n', '<leader>lo', utils.open_link, { desc = 'Open copied link' })
+
   vim.api.nvim_create_user_command('BufDelOthers', function()
     local bufs = vim.api.nvim_list_bufs()
     local current_buf = vim.api.nvim_get_current_buf()
