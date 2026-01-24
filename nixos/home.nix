@@ -1,7 +1,5 @@
 { pkgs, ... }:
 let
-  dotfiles = "/home/olli/dotfiles";
-  df = path: builtins.readFile "${dotfiles}/${path}";
   unfree = true;
 in
 {
