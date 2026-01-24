@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   ...
 }:
 let
@@ -11,7 +10,6 @@ in
   imports = [
     ./hardware-configuration.nix
     ./nvidia.nix
-    inputs.home-manager.nixosModules.default
   ];
 
   programs.nix-ld.enable = true;
@@ -132,8 +130,6 @@ in
     "x-scheme-handler/about" = "google-chrome.desktop";
     "x-scheme-handler/unknown" = "google-chrome.desktop";
   };
-  home-manager.backupFileExtension = "backup";
-  home-manager.users.olli = import ./home.nix;
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
     nerd-fonts.fira-mono

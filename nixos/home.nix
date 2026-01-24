@@ -2,8 +2,10 @@
 let
   dotfiles = "/home/olli/dotfiles";
   df = path: builtins.readFile "${dotfiles}/${path}";
+  unfree = true;
 in
 {
+  nixpkgs.config.allowUnfree = unfree;
   home.packages = with pkgs; [
     firefox
     fastfetch
@@ -94,8 +96,8 @@ in
     };
   };
 
-  home.file.".tmux.conf".text = df ".tmux.conf";
-  home.file.".zshrc".text = df ".zshrc" + ''
+  home.file.".tmux.conf".source = ../.tmux.conf;
+  home.file.".zshrc".text = builtins.readFile ../.zshrc + ''
     alias reload='hyprctl reload && pkill waybar; hyprctl dispatch exec waybar'
     alias xclip=wl-copy
     export PLAYWRIGHT_BROWSERS_PATH="${pkgs.playwright-driver.browsers}"
