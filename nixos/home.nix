@@ -29,6 +29,7 @@ in
     name = "Posy_Cursor";
     package = pkgs.posy-cursors;
   };
+  programs.home-manager.enable = true;
 
   gtk = {
     enable = true;
