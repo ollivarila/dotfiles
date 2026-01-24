@@ -3,6 +3,8 @@ let
   unfree = true;
 in
 {
+  home.username = "olli";
+  home.homeDirectory = "/home/olli";
   nixpkgs.config.allowUnfree = unfree;
   home.packages = with pkgs; [
     firefox
