@@ -7,46 +7,37 @@ let
   unfree = true;
 in
 {
-  imports = [
-    ./hardware-configuration.nix
-    ./nvidia.nix
+  environment.systemPackages = with pkgs; [
+    curl
+    unzip
+    docker
+    nwg-displays
+    hyprpaper
+    greetd.tuigreet
+    waybar
+    openrgb-with-all-plugins
+    dunst # notification daemon
+    libnotify # library for sending notifications
+    feh # image viewer
+    wl-clipboard
+    grim # grab images from wayland compositor
+    slurp # select region in wayland compositor
+    pwvucontrol # volume control
+    lm_sensors # TODO: not sure if needed
+    file # show file types
   ];
 
+  services.hardware.openrgb.enable = true;
+  programs.hyprland.enable = true;
+  programs.zsh.enable = true;
+  programs.steam.enable = true; # TODO: not available in home-manager somehow?
   programs.nix-ld.enable = true;
-
-  nix = {
-    gc = {
-      automatic = true;
-      dates = "weekly";
-    };
-    settings = {
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-      cores = 0;
-      max-jobs = "auto";
-    };
-  };
 
   nixpkgs.config.allowUnfree = unfree;
 
-  boot.loader = {
-    grub = {
-      enable = true;
-      useOSProber = true;
-      efiSupport = true;
-      device = "nodev";
-    };
-    systemd-boot.enable = false;
-    efi.canTouchEfiVariables = true;
-    efi.efiSysMountPoint = "/boot/efi";
-  };
+  networking.hostName = "nixos";
+  networking.networkmanager.enable = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
-  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
-
-  # Set your time zone.
   time.timeZone = "Europe/Helsinki";
 
   # Select internationalisation properties.
@@ -58,15 +49,7 @@ in
     font = "Lat2-Terminus16";
     useXkbConfig = true; # use xkb.options in tty.
   };
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-  # services.xserver.windowManager.i3.enable = true;
-  services.hardware.openrgb.enable = true;
-  programs.hyprland.enable = true;
-  programs.zsh.enable = true;
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
-  environment.sessionVariables.PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
 
   # Keyboard stuff
   # NOTE: This is not used in XWayland because WM/DE controls input
@@ -94,13 +77,8 @@ in
     TTYVTDisallocate = true;
   };
 
-  environment.etc."greetd/environments".text = ''hyprland'';
+  environment.etc."greetd/environments".text = "hyprland";
 
-  # Configure keymap in X11
-  # services.xserver.xkb.layout = "us";
-  # services.xserver.xkb.options = "eurosign:e,caps:escape";
-
-  # hardware.pulseaudio.enable = true;
   services.pipewire = {
     enable = true;
     pulse.enable = true;
@@ -119,8 +97,6 @@ in
     shell = pkgs.zsh;
   };
 
-  programs.steam.enable = true;
-
   xdg.mime.defaultApplications = {
     "text/html" = "google-chrome.desktop";
     "image/png" = "feh";
@@ -130,60 +106,45 @@ in
     "x-scheme-handler/about" = "google-chrome.desktop";
     "x-scheme-handler/unknown" = "google-chrome.desktop";
   };
+
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
-    nerd-fonts.fira-mono
-    nerd-fonts.ubuntu-mono
-    nerd-fonts.hack
-  ];
-
-  environment.systemPackages = with pkgs; [
-    mixxx
-    vim
-    neovim
-    wget
-    curl
-    unzip
-    alacritty
-    docker
-    nwg-displays
-    btop
-    bat
-    eza
-    fzf
-    git
-    greetd.tuigreet
-    gcc
-    ripgrep
-    tmux
-    waybar
-    openrgb-with-all-plugins
-    dunst
-    libnotify
-    jq
-    openssl
-    pkg-config
-    feh
-    yazi
-    tree-sitter
-    python3
-    wl-clipboard
-    fd
-    nixfmt-rfc-style
-    grim
-    slurp
-    inotify-tools
-    pwvucontrol
-    lm_sensors
-    file
-    vlc
-    gnumake
-    alsa-lib.dev
   ];
 
   virtualisation.docker.enable = true;
-
   networking.firewall.enable = true;
+
+  boot.loader = {
+    grub = {
+      enable = true;
+      useOSProber = true;
+      efiSupport = true;
+      device = "nodev";
+    };
+    systemd-boot.enable = false;
+    efi.canTouchEfiVariables = true;
+    efi.efiSysMountPoint = "/boot/efi";
+  };
+
+  nix = {
+    gc = {
+      automatic = true;
+      dates = "weekly";
+    };
+    settings = {
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      cores = 0;
+      max-jobs = "auto";
+    };
+  };
+
+  imports = [
+    ./hardware-configuration.nix
+    ./nvidia.nix
+  ];
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.

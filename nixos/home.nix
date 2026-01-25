@@ -7,12 +7,9 @@ in
   home.homeDirectory = "/home/olli";
   nixpkgs.config.allowUnfree = unfree;
   home.packages = with pkgs; [
-    firefox
-    fastfetch
     nodejs_22
     discord
     pnpm
-    hyprpaper
     google-chrome
     spotify
     playerctl
@@ -20,16 +17,32 @@ in
     awscli2
     lazygit
     clojure
-    deno
     tor
     tor-browser
+    btop
+    bat
+    alacritty
+    neovim
+    vim
+    eza
+    fzf
+    git
+    ripgrep
+    tmux
+    jq
+    tree-sitter
+    fd
+    # nixfmt-rfc-style not sure what this is
+    nixfmt
+    vlc
+    inotify-tools # TODO: required only for owl project
   ];
+  programs.home-manager.enable = true;
 
   home.pointerCursor = {
     name = "Posy_Cursor";
     package = pkgs.posy-cursors;
   };
-  programs.home-manager.enable = true;
 
   gtk = {
     enable = true;
@@ -59,9 +72,9 @@ in
       };
 
     };
-    zsh = {
-      enable = true;
-    };
+    # zsh = {
+    #   enable = true;
+    # };
     git = {
       enable = true;
       userName = "Olli Varila";
@@ -101,7 +114,6 @@ in
   home.file.".zshrc".text = builtins.readFile ../.zshrc + ''
     alias reload='hyprctl reload && pkill waybar; hyprctl dispatch exec waybar'
     alias xclip=wl-copy
-    export PLAYWRIGHT_BROWSERS_PATH="${pkgs.playwright-driver.browsers}"
   '';
 
   home.stateVersion = "24.05";
