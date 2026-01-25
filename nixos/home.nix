@@ -19,7 +19,6 @@
     bat
     alacritty
     neovim
-    vim
     eza
     fzf
     git

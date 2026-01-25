@@ -25,6 +25,7 @@ in
     pwvucontrol # volume control
     lm_sensors # TODO: not sure if needed
     file # show file types
+    vim
   ];
 
   services.hardware.openrgb.enable = true;
