@@ -6,18 +6,33 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    rust-overlay.url = "github:oxalica/rust-overlay";
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    metronome = {
+      url = "github:ollivarila/metronome";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
   outputs =
     {
       nixpkgs,
       home-manager,
       rust-overlay,
+      metronome,
       ...
     }:
     let
       system = "x86_64-linux";
-      overlays = [ rust-overlay.overlays.default ];
+      custom-packages = final: prev: {
+        metronome = metronome.packages.${system}.default;
+      };
+      overlays = [
+        rust-overlay.overlays.default
+        custom-packages
+      ];
       pkgs = import nixpkgs {
         inherit system;
         inherit overlays;

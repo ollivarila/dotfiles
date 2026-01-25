@@ -1,4 +1,8 @@
-{ pkgs, unfree, ... }:
+{
+  pkgs,
+  unfree,
+  ...
+}:
 let
   font-family = "JetBrainsMono Nerd Font Mono";
 in
@@ -7,6 +11,7 @@ in
   home.homeDirectory = "/home/olli";
   nixpkgs.config.allowUnfree = unfree;
   home.packages = with pkgs; [
+    metronome
     nodejs_22
     discord
     pnpm

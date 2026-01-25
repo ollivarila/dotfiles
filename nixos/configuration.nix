@@ -3,9 +3,6 @@
   unfree,
   ...
 }:
-let
-  tuigreet = "${pkgs.tuigreet}/bin/tuigreet";
-in
 {
   environment.systemPackages = with pkgs; [
     curl
@@ -13,7 +10,7 @@ in
     docker
     nwg-displays
     hyprpaper
-    greetd.tuigreet
+    tuigreet
     waybar
     openrgb-with-all-plugins
     dunst # notification daemon
@@ -62,7 +59,7 @@ in
     enable = true;
     settings = {
       default_session = {
-        command = "${tuigreet} --time --cmd Hyprland";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd Hyprland";
         user = "greeter";
       };
     };
