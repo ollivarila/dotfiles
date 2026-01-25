@@ -1,4 +1,7 @@
 { pkgs, unfree, ... }:
+let
+  font-family = "JetBrainsMono Nerd Font Mono";
+in
 {
   home.username = "olli";
   home.homeDirectory = "/home/olli";
@@ -63,7 +66,7 @@
     alacritty = {
       enable = true;
       settings = {
-        font.normal.family = "JetBrainsMono Nerd Font Mono";
+        font.normal.family = font-family;
         font.size = 12;
         general.import = [ "~/.config/alacritty/theme.toml" ];
       };
@@ -111,7 +114,7 @@
           border = "fe8019ff";
         };
         main = {
-          font = "JetBrainsMono Nerd Font Mono:size=16";
+          font = "${font-family}:size=16";
           lines = 5;
           inner-pad = 8;
           icon-theme = "kora";
