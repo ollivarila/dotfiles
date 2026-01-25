@@ -37,6 +37,7 @@ in
     inotify-tools # TODO: required only for owl project
     rust-bin.stable.latest.default
     cargo-watch
+    deluge
   ];
   programs.home-manager.enable = true;
 
@@ -115,6 +116,8 @@ in
   home.file.".zshrc".text = builtins.readFile ../.zshrc + ''
     alias reload='hyprctl reload && pkill waybar; hyprctl dispatch exec waybar'
     alias xclip=wl-copy
+    alias hm='home-manager switch --flake ~/dotfiles/nixos'
+    alias rb='sudo nixos-rebuild switch --flake ~/dotfiles/nixos'
   '';
 
   home.stateVersion = "24.05";

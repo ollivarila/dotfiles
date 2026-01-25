@@ -97,7 +97,6 @@ alias dcd='docker compose down'
 alias dcr='docker compose restart'
 alias v='nvim'
 alias olli='export AWS_PROFILE=olli'
-alias rb='sudo nixos-rebuild switch'
 alias ..="cd .."
 alias ...="cd ../.."
 
