@@ -66,9 +66,7 @@ in
     alacritty = {
       enable = true;
       settings = {
-        font.normal.family = "Ubuntu Mono Nerd Font Mono";
-        # font.normal.family = "Hack Nerd Font Mono Regular"; # broken :(
-        # font.normal.style = "Regular";
+        font.normal.family = "JetBrainsMono Nerd Font Mono";
         font.size = 12;
         general.import = [ "~/.config/alacritty/theme.toml" ];
       };
