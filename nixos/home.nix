@@ -13,7 +13,6 @@ in
     google-chrome
     spotify
     playerctl
-    rustup
     awscli2
     lazygit
     clojure
@@ -36,6 +35,8 @@ in
     nixfmt
     vlc
     inotify-tools # TODO: required only for owl project
+    rust-bin.stable.latest.default
+    cargo-watch
   ];
   programs.home-manager.enable = true;
 
