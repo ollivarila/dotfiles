@@ -1,10 +1,10 @@
 {
   pkgs,
+  unfree,
   ...
 }:
 let
   tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
-  unfree = true;
 in
 {
   environment.systemPackages = with pkgs; [

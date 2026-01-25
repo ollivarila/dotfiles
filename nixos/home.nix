@@ -1,7 +1,4 @@
-{ pkgs, ... }:
-let
-  unfree = true;
-in
+{ pkgs, unfree, ... }:
 {
   home.username = "olli";
   home.homeDirectory = "/home/olli";
@@ -34,9 +31,10 @@ in
     # nixfmt-rfc-style not sure what this is
     nixfmt
     vlc
-    inotify-tools # TODO: required only for owl project
     rust-bin.stable.latest.default
     cargo-watch
+    cargo-insta
+    cargo-expand
     deluge
   ];
   programs.home-manager.enable = true;
@@ -70,15 +68,35 @@ in
         font.size = 12;
         general.import = [ "~/.config/alacritty/theme.toml" ];
       };
-
     };
-    # zsh = {
-    #   enable = true;
-    # };
+    zsh = {
+      enable = true;
+      initContent =
+        let
+          content = builtins.readFile ../.zshrc;
+          conf = pkgs.lib.mkOrder 1000 content;
+          extra = pkgs.lib.mkOrder 1200 ''
+            alias reload='hyprctl reload && pkill waybar; hyprctl dispatch exec waybar'
+            alias xclip=wl-copy
+            alias hm='home-manager switch --flake ~/dotfiles/nixos'
+            alias rb='sudo nixos-rebuild switch --flake ~/dotfiles/nixos'
+          '';
+        in
+        pkgs.lib.mkMerge [
+          conf
+          extra
+        ];
+    };
     git = {
       enable = true;
-      userName = "Olli Varila";
-      userEmail = "olli.varila@gmail.com";
+      settings.user = {
+        name = "Olli Varila";
+        email = "olli.varila@gmail.com";
+      };
+    };
+    tmux = {
+      enable = true;
+      extraConfig = builtins.readFile ../.tmux.conf;
     };
     waybar = {
       enable = true;
@@ -109,14 +127,6 @@ in
       enable = true;
     };
   };
-
-  home.file.".tmux.conf".source = ../.tmux.conf;
-  home.file.".zshrc".text = builtins.readFile ../.zshrc + ''
-    alias reload='hyprctl reload && pkill waybar; hyprctl dispatch exec waybar'
-    alias xclip=wl-copy
-    alias hm='home-manager switch --flake ~/dotfiles/nixos'
-    alias rb='sudo nixos-rebuild switch --flake ~/dotfiles/nixos'
-  '';
 
   home.stateVersion = "24.05";
 }

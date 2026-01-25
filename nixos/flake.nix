@@ -22,10 +22,12 @@
         inherit system;
         inherit overlays;
       };
+      unfree = true;
     in
     {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
+        specialArgs = { inherit unfree; };
         modules = [
           ./configuration.nix
         ];
@@ -33,6 +35,7 @@
       homeConfigurations = {
         olli = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
+          extraSpecialArgs = { inherit unfree; };
           modules = [ ./home.nix ];
         };
       };
