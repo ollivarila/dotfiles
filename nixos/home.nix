@@ -111,7 +111,7 @@
           border = "fe8019ff";
         };
         main = {
-          font = "Ubuntu Mono Nerd Font Mono:size=16";
+          font = "JetBrainsMono Nerd Font Mono:size=16";
           lines = 5;
           inner-pad = 8;
           icon-theme = "kora";
