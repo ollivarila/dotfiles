@@ -33,7 +33,9 @@ in
     # nixfmt-rfc-style not sure what this is
     nixfmt
     vlc
-    rust-bin.stable.latest.default
+    (rust-bin.stable.latest.default.override {
+      extensions = [ "rust-analyzer" ];
+    })
     cargo-watch
     cargo-insta
     cargo-expand
