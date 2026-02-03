@@ -34,6 +34,7 @@ return {
       vim.keymap.set('n', 'dd', 'dd<cmd>AutolistRecalculate<cr>')
       vim.keymap.set('v', 'd', 'd<cmd>AutolistRecalculate<cr>')
     end,
+    enabled = false,
   },
   { -- Makes files prettier
     'MeanderingProgrammer/render-markdown.nvim',

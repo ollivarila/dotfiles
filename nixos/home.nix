@@ -39,12 +39,16 @@ in
     nixfmt
     vlc
     (rust-bin.stable.latest.default.override {
-      extensions = [ "rust-analyzer" ];
+      extensions = [
+        "rust-analyzer"
+        "rust-src"
+      ];
     })
     cargo-watch
     cargo-insta
     cargo-expand
     deluge
+    gcc
   ];
   programs.home-manager.enable = true;
 
@@ -69,6 +73,12 @@ in
     url = "https://raw.githubusercontent.com/alacritty/alacritty-theme/master/themes/gruvbox_dark.toml";
     sha256 = "85da5eac732cb89ba0a1d334232b9e255e901f4978d3e5eb5512a71d14116ea7";
   };
+
+  #wayland.windowManager.hyprland = {
+  #  enable = true;
+  #  exraConfig = builtins.readFile ../hyprland/hyprland.conf;
+  #};
+
   programs = {
     alacritty = {
       enable = true;
