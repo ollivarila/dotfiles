@@ -49,6 +49,10 @@ in
     cargo-expand
     deluge
     gcc
+    signal-desktop
+    uv
+    python3
+    gh
   ];
   programs.home-manager.enable = true;
 
@@ -99,6 +103,7 @@ in
             alias xclip=wl-copy
             alias hm='home-manager switch --flake ~/dotfiles/nixos'
             alias rb='sudo nixos-rebuild switch --flake ~/dotfiles/nixos'
+            alias claude='bash ~/.claude/local/claude'
           '';
         in
         pkgs.lib.mkMerge [
