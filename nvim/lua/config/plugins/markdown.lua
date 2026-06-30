@@ -11,7 +11,7 @@ return {
     config = function()
       require('autolist').setup()
 
-      vim.keymap.set('i', '<tab>', '<cmd>AutolistTab<cr>')
+      -- vim.keymap.set('i', '<tab>', '<cmd>AutolistTab<cr>')
       vim.keymap.set('i', '<s-tab>', '<cmd>AutolistShiftTab<cr>')
       -- vim.keymap.set("i", "<c-t>", "<c-t><cmd>AutolistRecalculate<cr>") -- an example of using <c-t> to indent
       vim.keymap.set('i', '<CR>', '<CR><cmd>AutolistNewBullet<cr>')
