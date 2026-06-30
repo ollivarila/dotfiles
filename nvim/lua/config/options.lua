@@ -77,6 +77,9 @@ function M.defaults()
     extension = { foo = 'foo' },
   }
   vim.treesitter.language.register('foo', { 'foo' })
+
+  -- Read changes if file changed on the background
+  vim.opt.autoread = true
 end
 
 return M
