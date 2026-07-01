@@ -22,6 +22,10 @@ return { -- Fuzzy Finder (files, lsp, etc)
   config = function()
     require('telescope').setup {
       defaults = {
+        -- TODO: treesitter preview broken in nvim 0.12 (node:range() nil), re-enable when telescope updates
+        preview = {
+          treesitter = false,
+        },
         file_ignore_patterns = {
           '^node_modules/',
           '^.git/',
