@@ -4,6 +4,7 @@ return {
     require('nvim-tree').setup {
       filters = {
         dotfiles = false,
+        git_ignored = false,
       },
     }
     require('config.keymaps').nvim_tree()
