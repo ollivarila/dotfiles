@@ -1,0 +1,45 @@
+{
+  "height": 20,
+  "margin-top": 5,
+  "margin-bottom": 1,
+  "modules-left": [ "hyprland/workspaces", "custom/kblayout", "custom/sink", "mpris" ],
+  "modules-center": [ "custom/signal" ],
+  "modules-right": [ "pulseaudio", "cpu", "custom/clock", "custom/date" ],
+  "custom/date": {
+    "exec": "date +' %d.%m'",
+    "interval": 900
+  },
+  "pulseaudio": {
+    "format": "  {volume}%"
+
+  },
+  "cpu": {
+    "format": " {usage}%",
+    "interval": 1
+  },
+  "custom/clock": {
+    "exec": "date +' %H:%M'",
+    "interval": 5
+  },
+  "mpris": {
+	"format": "  {status_icon} {dynamic}",
+        "interval": 5,
+        "dynamic-len": 40,
+	"status-icons": {
+		"playing": "⏸ ",
+		"paused": "▶ ",
+		"stopped": ""
+	},
+	"dynamic-order": ["title"],
+	"ignored-players": ["firefox"]
+  },
+  "custom/kblayout": {
+    "exec": "hyprctl devices -j | jq -r '.keyboards[] | select(.name == \"corsair-corsair-gaming-k65-rgb-rapidfire-keyboard--keyboard\") | .active_keymap' | cut -c 1-3 | tr '[:upper:]' '[:lower:]'",
+    "format": "   {}",
+    "signal": 6
+  },
+  "custom/sink": {
+    "exec": "~/.bin/echo-sink",
+    "signal": 7
+  }
+}

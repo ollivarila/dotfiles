@@ -1,0 +1,37 @@
+
+[global]
+
+monitor = 0
+origin = top-right
+
+# Geometry
+
+width = 300
+height = (0, 300)
+padding = 12
+horizontal_padding = 14
+gap_size = 8
+offset = "10x20"
+
+# Frame
+frame_color = "#689d6a"
+frame_width = 2
+
+# Text
+font = UbuntuMono Nerd Font Mono
+line_height = 1
+
+# Misc
+
+corner_radius = 4
+
+background = "#282828"
+
+[urgency_low]
+frame_color = "#689d6a"
+
+[urgency_normal]
+frame_color = "#689d6a"
+
+[urgency_critical]
+frame_color = "#b16286"

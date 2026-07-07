@@ -101,6 +101,14 @@ in
   home.file.".config/hypr/workspaces.conf".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/hyprland/workspaces.conf";
 
+  home.file.".config/waybar/config".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/waybar/config";
+  home.file.".config/waybar/extra.css".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/waybar/extra.css";
+
+  home.file.".config/dunst/dunstrc".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/dunst/dunstrc";
+
   programs = {
     alacritty = {
       enable = true;
@@ -119,6 +127,7 @@ in
     };
     git = {
       enable = true;
+      ignores = [ "**/.claude/settings.local.json" ];
       settings.user = {
         name = "Olli Varila";
         email = "olli.varila@gmail.com";

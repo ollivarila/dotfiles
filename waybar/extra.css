@@ -1,0 +1,150 @@
+/* Colors (gruvbox) */
+@define-color black	#282828;
+@define-color red	#cc241d;
+@define-color green	#98971a;
+@define-color yellow	#d79921;
+@define-color blue	#458588;
+@define-color purple	#b16286;
+@define-color aqua	#689d6a;
+@define-color gray	#a89984;
+@define-color brgray	#928374;
+@define-color brred	#fb4934;
+@define-color brgreen	#b8bb26;
+@define-color bryellow	#fabd2f;
+@define-color brblue	#83a598;
+@define-color brpurple	#d3869b;
+@define-color braqua	#8ec07c;
+@define-color white	#ebdbb2;
+@define-color bg2	#504945;
+
+
+@define-color warning 	@bryellow;
+@define-color critical	@red;
+@define-color mode	@black;
+@define-color unfocused	@bg2;
+@define-color inactive	@purple;
+@define-color sound	@blue;
+@define-color network	@purple;
+@define-color memory	@braqua;
+@define-color cpu	@green;
+@define-color temp	@brgreen;
+@define-color layout	@bryellow;
+@define-color battery	@aqua;
+@define-color date	@black;
+@define-color time	@white;
+
+@define-color workspace @black;
+@define-color focused	@purple;
+
+* {
+  font-family: "JetBrainsMono Nerd Font";
+  border: none;
+  border-radius: 0;
+  transition: none;
+  font-size: 14px;
+  min-height: 0px;
+  color: @white;
+}
+
+#window {
+}
+
+#waybar {
+  background: transparent;
+}
+
+#waybar.hidden {
+    opacity: 0.9;
+    background: @white;
+}
+
+#workspaces {
+  border-radius: 8 2 8 2;
+  background: @workspace;
+}
+
+#workspaces button {
+  min-width: 16px;
+}
+
+#workspaces button:hover {
+  background: @focused;
+}
+
+
+#workspaces button.active {
+  background: @focused;
+  transition: background;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(.23,1.03,.48,.95);
+}
+
+#workspaces :first-child.active {
+  background: @focused;
+  border-radius: 8 2 0 2;
+}
+
+#workspaces :last-child.active {
+  background: @focused;
+  border-radius: 0 2 8 2;
+}
+
+#custom-clock {
+  background: @braqua;
+  font-weight: 400;
+  /* border-radius: 8 1 8 1; */
+  border-radius: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+#cpu {
+  background: @cpu;
+  font-weight: 500;
+  min-width: 50px;
+}
+
+#pulseaudio {
+  background: @sound;
+  font-weight: 500;
+  min-width: 50px;
+}
+
+
+#pulseaudio,
+#cpu,
+#custom-date,
+#custom-clock {
+  margin-left: -8px;
+  padding-right: 24px;
+  padding-left: 16px;
+  border-radius: 8 0 0 8;
+  color: @black;
+}
+
+#mpris {
+  margin-left: 8px;
+}
+
+#custom-date {
+  background: @yellow;
+  font-weight: 400;
+}
+
+#custom-clock {
+  background: #181818;
+  font-weight: 400;
+  color: @white;
+}
+
+#custom-space {
+  background: @sound;
+  border-radius: 8 0 0 8;
+}
+
+.modules-left {
+  margin-left: 8px;
+}
+
+.modules-right {
+}
