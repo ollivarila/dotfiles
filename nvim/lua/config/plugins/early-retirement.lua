@@ -41,7 +41,6 @@ return {
     -- When a file is deleted, for example via an external program, delete the
     -- associated buffer as well.
     -- (This feature is independent from the automatic closing)
-    -- TODO: requires nvim 0.10
-    -- deleteBufferWhenFileDeleted = true,
+    deleteBufferWhenFileDeleted = true,
   },
 }
