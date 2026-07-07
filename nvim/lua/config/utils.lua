@@ -63,11 +63,6 @@ function M.get_plugins()
   return custom_plugins
 end
 
-function M.get_plugin_names()
-  -- TODO: read all plugin file fields form dirs
-  return { 'nvim-dap-ui' }
-end
-
 function M.is_work()
   return os.getenv 'WORK' == 'true'
 end
