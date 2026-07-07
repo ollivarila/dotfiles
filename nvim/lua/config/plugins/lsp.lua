@@ -6,9 +6,9 @@ return {
   'neovim/nvim-lspconfig',
   dependencies = {
     -- Package manager for lsps
-    'williamboman/mason.nvim',
+    'mason-org/mason.nvim',
     -- Automatic lsp install & setup
-    'williamboman/mason-lspconfig.nvim',
+    'mason-org/mason-lspconfig.nvim',
     -- Useful status updates for LSP.
     { 'j-hui/fidget.nvim', opts = {} },
   },
@@ -76,10 +76,7 @@ return {
     local utils = require 'config.utils'
 
     if not utils.is_work() then
-      ensure_installed = vim.tbl_extend('force', ensure_installed, {
-        'clojure_lsp',
-        'nil_ls',
-      })
+      vim.list_extend(ensure_installed, { 'clojure_lsp', 'nil_ls' })
     end
 
     -- This plugin installs all the listed lsps, configures and enables them
