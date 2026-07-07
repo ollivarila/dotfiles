@@ -2,8 +2,6 @@ local keymaps = require 'config.keymaps'
 local options = require 'config.options'
 local autocmds = require 'config.autocmds'
 
-local utils = require 'config.utils'
-
 -- NOTE: Default settings contain settings that are plugin agnostic
 -- They also might need to be loaded before any plugins
 
@@ -17,7 +15,8 @@ keymaps.defaults()
 autocmds.defaults()
 
 require 'config.setup_lazy'()
-local plugins = utils.get_plugins()
-require('lazy').setup(plugins)
+require('lazy').setup {
+  { import = 'config.plugins' },
+}
 
 vim.cmd 'colorscheme gruvbox'

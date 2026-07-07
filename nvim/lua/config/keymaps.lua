@@ -4,19 +4,16 @@ end
 local utils = require 'config.utils'
 
 local M = {}
-function M.vscode()
-  vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-end
 
 function M.defaults()
-  vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+  norm('<Esc>', '<cmd>nohlsearch<CR>')
 
-  vim.keymap.set('n', '<C-u>', '<C-u>zz')
-  vim.keymap.set('n', '<C-d>', '<C-d>zz')
+  norm('<C-u>', '<C-u>zz')
+  norm('<C-d>', '<C-d>zz')
 
   -- Diagnostic keymaps
-  vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
-  vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+  norm('<leader>e', vim.diagnostic.open_float, 'Show diagnostic [E]rror messages')
+  norm('<leader>q', vim.diagnostic.setloclist, 'Open diagnostic [Q]uickfix list')
 
   -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
   -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -30,21 +27,21 @@ function M.defaults()
   --  Use CTRL+<hjkl> to switch between windows
   --
   --  See `:help wincmd` for a list of all window commands
-  vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-  vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-  vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-  vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+  norm('<C-h>', '<C-w><C-h>', 'Move focus to the left window')
+  norm('<C-l>', '<C-w><C-l>', 'Move focus to the right window')
+  norm('<C-j>', '<C-w><C-j>', 'Move focus to the lower window')
+  norm('<C-k>', '<C-w><C-k>', 'Move focus to the upper window')
 
   -- Resize window
-  vim.keymap.set('n', '<left>', [[<cmd>vertical resize +5<cr>]])
-  vim.keymap.set('n', '<right>', [[<cmd>vertical resize -5<cr>]])
-  vim.keymap.set('n', '<up>', [[<cmd>horizontal resize +2<cr>]])
-  vim.keymap.set('n', '<down>', [[<cmd>horizontal resize -2<cr>]])
+  norm('<left>', [[<cmd>vertical resize +5<cr>]])
+  norm('<right>', [[<cmd>vertical resize -5<cr>]])
+  norm('<up>', [[<cmd>horizontal resize +2<cr>]])
+  norm('<down>', [[<cmd>horizontal resize -2<cr>]])
 
   -- Lazygit
-  vim.keymap.set('n', '<leader>g', '<cmd>LazyGit<cr>', { desc = 'Open Lazy[G]it' })
+  norm('<leader>g', '<cmd>LazyGit<cr>', 'Open Lazy[G]it')
 
-  vim.keymap.set('n', '<leader>lo', utils.open_link, { desc = 'Open copied link' })
+  norm('<leader>lo', utils.open_link, 'Open copied link')
 
   vim.api.nvim_create_user_command('BufDelOthers', function()
     local bufs = vim.api.nvim_list_bufs()
@@ -60,19 +57,16 @@ end
 function M.telescope()
   -- See `:help telescope.builtin`
   local builtin = require 'telescope.builtin'
-  vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[F]ind [H]elp' })
-  vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = '[F]ind [K]eymaps' })
-  vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = '[F]ind [F]iles' })
-  -- vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
-  vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = '[F]ind current [W]ord' })
-  vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = '[F]ind by [G]rep' })
-  -- vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
-  -- vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
-  vim.keymap.set('n', '<leader>f.', builtin.oldfiles, { desc = '[F]ind Recent Files ("." for repeat)' })
-  vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = 'Find existing buffers' })
+  norm('<leader>fh', builtin.help_tags, '[F]ind [H]elp')
+  norm('<leader>fk', builtin.keymaps, '[F]ind [K]eymaps')
+  norm('<leader>ff', builtin.find_files, '[F]ind [F]iles')
+  norm('<leader>fw', builtin.grep_string, '[F]ind current [W]ord')
+  norm('<leader>fg', builtin.live_grep, '[F]ind by [G]rep')
+  norm('<leader>f.', builtin.oldfiles, '[F]ind Recent Files ("." for repeat)')
+  norm('<leader><leader>', builtin.buffers, 'Find existing buffers')
 
   -- Open file in vsplit
-  vim.keymap.set('n', '<C-right>', function()
+  norm('<C-right>', function()
     local filename = utils.current_file()
     if filename == 'NvimTree_1' then
       vim.print 'Skill issue...'
@@ -81,30 +75,30 @@ function M.telescope()
 
     vim.cmd 'vsplit'
     builtin.find_files()
-  end, { desc = 'Find file and open in vsplit' })
+  end, 'Find file and open in vsplit')
 
   -- Slightly advanced example of overriding default behavior and theme
-  vim.keymap.set('n', '<leader>/', function()
+  norm('<leader>/', function()
     -- You can pass additional configuration to telescope to change theme, layout, etc.
     builtin.current_buffer_fuzzy_find(require('telescope.themes').get_ivy {
       winblend = 10,
       previewer = false,
     })
-  end, { desc = '[/] Fuzzily search in current buffer' })
+  end, '[/] Fuzzily search in current buffer')
 
   -- Also possible to pass additional configuration options.
   --  See `:help telescope.builtin.live_grep()` for information about particular keys
-  vim.keymap.set('n', '<leader>s/', function()
+  norm('<leader>s/', function()
     builtin.live_grep {
       grep_open_files = true,
       prompt_title = 'Live Grep in Open Files',
     }
-  end, { desc = '[S]earch [/] in Open Files' })
+  end, '[S]earch [/] in Open Files')
 
   -- Shortcut for searching your neovim configuration files
-  vim.keymap.set('n', '<leader>sn', function()
+  norm('<leader>sn', function()
     builtin.find_files { cwd = vim.fn.stdpath 'config' }
-  end, { desc = '[S]earch [N]eovim files' })
+  end, '[S]earch [N]eovim files')
 end
 
 function M.lsp(event)
@@ -159,11 +153,11 @@ function M.nvim_tree()
 
   local toggle_tree = tree_api.tree.toggle
 
-  vim.keymap.set('n', '<leader><tab>', function()
+  norm('<leader><tab>', function()
     toggle_tree {
       find_file = true,
     }
-  end, { desc = '[T]oggle tree' })
+  end, '[T]oggle tree')
 end
 
 function M.lsp_saga()
@@ -255,28 +249,6 @@ function M.harpoon()
   norm('<leader>hm', function()
     harpoon.ui:toggle_quick_menu(harpoon:list())
   end, 'Toggle [H]arpoon [M]enu')
-end
-
-function M.copilot()
-  vim.g.copilot_enabled = 0
-  vim.cmd 'Copilot disable'
-
-  norm('<leader>ct', function()
-    local enabled = vim.g.copilot_enabled == 1
-    vim.g.copilot_enabled = not enabled
-    local cmd = enabled and 'disable' or 'enable'
-
-    vim.cmd('Copilot ' .. cmd)
-    vim.notify('Copilot ' .. cmd .. 'd')
-  end, '[T]oggle [C]opilot')
-end
-
-function M.debug()
-  local dapui = require 'dapui'
-  local toggle = function()
-    dapui.toggle()
-  end
-  norm('<leader>db', toggle, 'Toggle debug ui')
 end
 
 function M.clojure()
