@@ -106,6 +106,11 @@ in
   programs = {
     ghostty = {
       enable = true;
+      settings = {
+        font-family = font-family;
+        font-size = 12;
+        cursor-style = "bar";
+      };
     };
     zsh = {
       enable = true;
