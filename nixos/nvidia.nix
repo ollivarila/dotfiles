@@ -8,7 +8,7 @@
     powerManagement.finegrained = false;
     open = false;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
     prime = {
       intelBusId = "PCI:00:01.0";
       nvidiaBusId = "PCI:01:00.0";
