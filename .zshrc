@@ -27,6 +27,7 @@ path () {
 
 path "$HOME/.cargo/bin"
 path "$HOME/.bin"
+path "$HOME/.local/bin"
 
 export EDITOR="nvim"
 

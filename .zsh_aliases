@@ -1,0 +1,4 @@
+alias reload='hyprctl reload && pkill waybar; hyprctl dispatch exec waybar'
+alias xclip=wl-copy
+alias hm='home-manager switch --flake ~/dotfiles/nixos'
+alias rb='sudo nixos-rebuild switch --flake ~/dotfiles/nixos'

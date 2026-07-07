@@ -1,8 +1,5 @@
 return { -- Collection of various small independent plugins/modules
   'echasnovski/mini.nvim',
-  dependencies = {
-    'stevearc/dressing.nvim',
-  },
   config = function()
     local keymaps = require 'config.keymaps'
     -- Better Around/Inside textobjects
@@ -38,6 +35,7 @@ return { -- Collection of various small independent plugins/modules
 
     -- Simple picker
     require('mini.pick').setup()
+    vim.ui.select = MiniPick.ui_select
 
     -- File system explorer
     require('mini.files').setup()
