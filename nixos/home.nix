@@ -12,6 +12,7 @@ in
   nixpkgs.config.allowUnfree = unfree;
   home.packages = with pkgs; [
     metronome
+    herdr
     nodejs_22
     discord
     pnpm
