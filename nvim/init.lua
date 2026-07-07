@@ -27,12 +27,8 @@ keymaps.defaults()
 -- Load default autocmds
 autocmds.defaults()
 
--- Setup lazy.nvim plugin manager
 require 'config.setup_lazy'()
-
--- Configure and install plugins
 local plugins = utils.get_plugins()
-
 require('lazy').setup(plugins)
 
 vim.cmd 'colorscheme gruvbox'
