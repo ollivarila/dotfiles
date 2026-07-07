@@ -87,10 +87,19 @@ in
 
   home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/nvim";
 
-  #wayland.windowManager.hyprland = {
-  #  enable = true;
-  #  exraConfig = builtins.readFile ../hyprland/hyprland.conf;
-  #};
+  # Hyprland itself is enabled at the system level (programs.hyprland.enable
+  # in configuration.nix, launched via greetd), so we deliberately don't use
+  # the wayland.windowManager.hyprland home-manager module here — it wants to
+  # manage the whole session/package lifecycle itself and conflicts with that.
+  # Just symlink the config files straight from dotfiles instead.
+  home.file.".config/hypr/hyprland.conf".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/hyprland/hyprland.conf";
+  home.file.".config/hypr/monitors.conf".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/hyprland/monitors.conf";
+  home.file.".config/hypr/hyprpaper.conf".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/hyprland/hyprpaper.conf";
+  home.file.".config/hypr/workspaces.conf".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/hyprland/workspaces.conf";
 
   programs = {
     alacritty = {
