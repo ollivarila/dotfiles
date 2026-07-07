@@ -160,7 +160,7 @@ function M.lsp(event)
   --  See `:help K` for why this keymap
   map('K', vim.lsp.buf.hover, 'Hover Documentation')
   map('fi', function()
-    require('trouble').toggle 'lsp'
+    require('trouble').toggle { mode = 'lsp', focus = true }
   end, 'Open [F][i]nder')
   map('<leader>o', function()
     require('trouble').toggle { mode = 'symbols', focus = false, win = { position = 'right', size = 40 } }
