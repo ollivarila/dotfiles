@@ -240,18 +240,21 @@ function M.mini_files()
 end
 
 function M.harpoon()
-  local add_file = require('harpoon.mark').add_file
-  local ui = require 'harpoon.ui'
+  local harpoon = require 'harpoon'
 
-  norm('<leader>ha', add_file, '[A]dd a file to [H]arpoon')
+  norm('<leader>ha', function()
+    harpoon:list():add()
+  end, '[A]dd a file to [H]arpoon')
 
   for i = 1, 6, 1 do
     norm('<leader>' .. i, function()
-      ui.nav_file(i)
+      harpoon:list():select(i)
     end, 'Navigate to file ' .. i)
   end
 
-  norm('<leader>hm', ui.toggle_quick_menu, 'Toggle [H]arpoon [M]enu')
+  norm('<leader>hm', function()
+    harpoon.ui:toggle_quick_menu(harpoon:list())
+  end, 'Toggle [H]arpoon [M]enu')
 end
 
 function M.copilot()
