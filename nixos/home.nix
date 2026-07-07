@@ -29,7 +29,6 @@ in
     tor-browser
     btop
     bat
-    alacritty
     neovim
     eza
     fzf
@@ -77,11 +76,6 @@ in
     };
   };
 
-  home.file.".config/alacritty/theme.toml".source = builtins.fetchurl {
-    url = "https://raw.githubusercontent.com/alacritty/alacritty-theme/master/themes/gruvbox_dark.toml";
-    sha256 = "85da5eac732cb89ba0a1d334232b9e255e901f4978d3e5eb5512a71d14116ea7";
-  };
-
   home.file.".config/herdr/config.toml".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/herdr/config.toml";
 
@@ -110,13 +104,8 @@ in
     config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/dunst/dunstrc";
 
   programs = {
-    alacritty = {
+    ghostty = {
       enable = true;
-      settings = {
-        font.normal.family = font-family;
-        font.size = 12;
-        general.import = [ "~/.config/alacritty/theme.toml" ];
-      };
     };
     zsh = {
       enable = true;
