@@ -16,14 +16,6 @@ return { -- Collection of various small independent plugins/modules
     -- - sr)'  - [S]urround [R]eplace [)] [']
     require('mini.surround').setup()
 
-    -- Automatic {} etc
-    -- require('mini.pairs').setup {
-    --   ["'"] = { action = 'closeopen', pair = "''", neigh_pattern = '[^%a\\].', register = { cr = false } },
-    -- }
-
-    -- Simple tabline
-    -- require('mini.tabline').setup()
-
     -- Sessions
     require('mini.sessions').setup {
       autoread = false,
@@ -32,14 +24,6 @@ return { -- Collection of various small independent plugins/modules
       },
     }
     keymaps.mini_sessions()
-
-    -- Simple picker
-    require('mini.pick').setup()
-    vim.ui.select = MiniPick.ui_select
-
-    -- File system explorer
-    require('mini.files').setup()
-    keymaps.mini_files()
 
     -- Comment lines
     require('mini.comment').setup()

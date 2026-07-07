@@ -16,6 +16,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
         return vim.fn.executable 'make' == 1
       end,
     },
+    { 'nvim-telescope/telescope-ui-select.nvim' },
     { 'nvim-tree/nvim-web-devicons' },
   },
   config = function()
@@ -37,10 +38,16 @@ return { -- Fuzzy Finder (files, lsp, etc)
           theme = 'ivy',
         },
       },
+      extensions = {
+        ['ui-select'] = {
+          require('telescope.themes').get_dropdown(),
+        },
+      },
     }
 
     -- Enable telescope extensions, if they are installed
     pcall(require('telescope').load_extension, 'fzf')
+    pcall(require('telescope').load_extension, 'ui-select')
 
     -- Load telescope keymaps
     local keymaps = require 'config.keymaps'

@@ -222,17 +222,6 @@ function M.todo_comments()
   norm('<leader>td', '<cmd>TodoTelescope<cr>', 'Search [T]o[D]os')
 end
 
-function M.mini_files()
-  if MiniFiles == nil then
-    vim.print 'mini.files is not loaded'
-    return
-  end
-
-  norm('<leader>mf', function()
-    MiniFiles.open()
-  end, 'Open [M]ini [F]iles')
-end
-
 function M.harpoon()
   local harpoon = require 'harpoon'
 
