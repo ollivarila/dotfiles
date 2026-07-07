@@ -6,7 +6,6 @@ local utils = require 'config.utils'
 
 -- FIXME: deprecated/aging config to modernize (nvim 0.12):
 -- FIXME: [1] vim.highlight.on_yank() deprecated -> vim.hl.on_yank() (autocmds.lua:42)
--- FIXME: [2] vim.loop soft-deprecated -> vim.uv (setup_lazy.lua:433, lualine.lua:1103)
 -- FIXME: [3] mason repos moved to mason-org/; williamboman/* archived (lsp.lua:950-952)
 -- FIXME: [4] nvim-treesitter/playground archived -> use built-in :Inspect / :InspectTree (treesitter.lua:1517)
 -- FIXME: [5] nvim-treesitter master branch legacy; main branch is 0.11+ rewrite, new API (treesitter.lua:1522)
