@@ -1,0 +1,12 @@
+# Mirrors .tmux.conf: ctrl+j prefix, mouse on, vi pane-nav/copy-mode (already
+# herdr defaults), focus events passed through so nvim autoread works.
+
+[keys]
+prefix = "ctrl+j"
+
+[ui]
+mouse_capture = true
+redraw_on_focus_gained = true
+
+[theme]
+name = "gruvbox"

@@ -1,14 +1,17 @@
 {
+  config,
   pkgs,
   unfree,
   ...
 }:
 let
+  username = "olli";
   font-family = "JetBrainsMono Nerd Font Mono";
+  dotfilesDir = "/home/${username}/dotfiles";
 in
 {
-  home.username = "olli";
-  home.homeDirectory = "/home/olli";
+  home.username = username;
+  home.homeDirectory = "/home/${username}";
   nixpkgs.config.allowUnfree = unfree;
   home.packages = with pkgs; [
     metronome
@@ -79,6 +82,11 @@ in
     sha256 = "85da5eac732cb89ba0a1d334232b9e255e901f4978d3e5eb5512a71d14116ea7";
   };
 
+  home.file.".config/herdr/config.toml".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/herdr/config.toml";
+
+  home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/nvim";
+
   #wayland.windowManager.hyprland = {
   #  enable = true;
   #  exraConfig = builtins.readFile ../hyprland/hyprland.conf;
@@ -95,22 +103,10 @@ in
     };
     zsh = {
       enable = true;
-      initContent =
-        let
-          content = builtins.readFile ../.zshrc;
-          conf = pkgs.lib.mkOrder 1000 content;
-          extra = pkgs.lib.mkOrder 1200 ''
-            alias reload='hyprctl reload && pkill waybar; hyprctl dispatch exec waybar'
-            alias xclip=wl-copy
-            alias hm='home-manager switch --flake ~/dotfiles/nixos'
-            alias rb='sudo nixos-rebuild switch --flake ~/dotfiles/nixos'
-            alias claude='bash ~/.claude/local/claude'
-          '';
-        in
-        pkgs.lib.mkMerge [
-          conf
-          extra
-        ];
+      initContent = pkgs.lib.mkMerge [
+        (pkgs.lib.mkOrder 1000 "source ${dotfilesDir}/.zshrc")
+        (pkgs.lib.mkOrder 1200 "source ${dotfilesDir}/.zsh_aliases")
+      ];
     };
     git = {
       enable = true;
@@ -121,7 +117,7 @@ in
     };
     tmux = {
       enable = true;
-      extraConfig = builtins.readFile ../.tmux.conf;
+      extraConfig = "source-file ${dotfilesDir}/.tmux.conf";
     };
     waybar = {
       enable = true;
