@@ -43,6 +43,23 @@ function M.defaults()
 
   norm('<leader>lo', utils.open_link, 'Open copied link')
 
+  -- Diagnostic navigation
+  norm('e]', function()
+    vim.diagnostic.jump { count = 1, severity = vim.diagnostic.severity.ERROR }
+  end, 'Next error [D]iagnostic')
+
+  norm('e[', function()
+    vim.diagnostic.jump { count = -1, severity = vim.diagnostic.severity.ERROR }
+  end, 'Previous error [D]iagnostic')
+
+  norm('d]', function()
+    vim.diagnostic.jump { count = 1, severity = { min = vim.diagnostic.severity.WARN } }
+  end, 'Next [D]iagnostic')
+
+  norm('d[', function()
+    vim.diagnostic.jump { count = -1, severity = { min = vim.diagnostic.severity.WARN } }
+  end, 'Previous [D]iagnostic')
+
   vim.api.nvim_create_user_command('BufDelOthers', function()
     local bufs = vim.api.nvim_list_bufs()
     local current_buf = vim.api.nvim_get_current_buf()
@@ -141,9 +158,13 @@ function M.lsp(event)
 
   -- Opens a popup that displays documentation about the word under your cursor
   --  See `:help K` for why this keymap
-  map('K', '<cmd>Lspsaga hover_doc<cr>', 'Hover Documentation')
-  map('fi', '<cmd>Lspsaga finder<cr>', 'Open [F][i]nder')
-  map('<leader>o', '<cmd>Lspsaga outline<cr>', 'Open outline')
+  map('K', vim.lsp.buf.hover, 'Hover Documentation')
+  map('fi', function()
+    require('trouble').toggle 'lsp'
+  end, 'Open [F][i]nder')
+  map('<leader>o', function()
+    require('trouble').toggle { mode = 'symbols', focus = false, win = { position = 'right', size = 40 } }
+  end, 'Open outline')
 
   map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 end
@@ -158,32 +179,6 @@ function M.nvim_tree()
       find_file = true,
     }
   end, '[T]oggle tree')
-end
-
-function M.lsp_saga()
-  local diagnostic = require 'lspsaga.diagnostic'
-  local error_opts = {
-    severity = vim.diagnostic.severity.ERROR,
-  }
-  local diag_opts = {
-    severity = { min = vim.diagnostic.severity.WARN },
-  }
-
-  norm('e]', function()
-    diagnostic:goto_next(error_opts)
-  end, 'Next error [D]iagnostic')
-
-  norm('e[', function()
-    diagnostic:goto_prev(error_opts)
-  end, 'Previous error [D]iagnostic')
-
-  norm('d]', function()
-    diagnostic:goto_next(diag_opts)
-  end, 'Next [D]iagnostic')
-
-  norm('d[', function()
-    diagnostic:goto_prev(diag_opts)
-  end, 'Previous [D]iagnostic')
 end
 
 function M.trouble()

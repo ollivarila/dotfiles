@@ -24,6 +24,8 @@ return { -- Autocompletion
       -- <c-l> moves to the right of your snippet expansion, <c-h> backwards.
       ['<C-l>'] = { 'snippet_forward', 'fallback' },
       ['<C-h>'] = { 'snippet_backward', 'fallback' },
+      -- Show/hide the LSP signature help window
+      ['<C-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
     },
     completion = {
       menu = { auto_show = true },
@@ -32,6 +34,7 @@ return { -- Autocompletion
         auto_show_delay_ms = 200,
       },
     },
+    signature = { enabled = true },
     sources = {
       default = { 'lsp', 'path', 'snippets', 'lazydev' },
       providers = {
