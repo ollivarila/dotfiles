@@ -12,7 +12,6 @@ local utils = require 'config.utils'
 -- FIXME: [5] nvim-treesitter master branch legacy; main branch is 0.11+ rewrite, new API (treesitter.lua:1522)
 -- FIXME: [6] dressing.nvim maintenance-only + loaded twice; vim.ui/mini/snacks cover it (misc.lua:1267, mini.lua:1216)
 -- FIXME: [7] harpoon v1 API (harpoon.mark/harpoon.ui) -> harpoon2 (keymaps.lua:301)
--- FIXME: [8] nvim-cmp aging -> blink.cmp modern alt (lsp-cmp.lua)
 -- FIXME: [10] nvim-treesitter archived; migrate to built-in treesitter highlight/indent, keep only for grammar installs (treesitter.lua)
 
 -- NOTE: Default settings contain settings that are plugin agnostic
