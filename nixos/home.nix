@@ -109,7 +109,9 @@ in
       settings = {
         font-family = font-family;
         font-size = 12;
-        cursor-style = "bar";
+        cursor-style = "block";
+        cursor-style-blink = false;
+        shell-integration-features = "no-cursor";
       };
     };
     zsh = {
