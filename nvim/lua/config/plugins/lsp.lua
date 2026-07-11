@@ -56,6 +56,13 @@ return {
       end,
     })
 
+    local utils = require 'config.utils'
+
+    -- oxlint LSP: local node_modules binary only, attaches only in oxc projects (workspace_required + .oxlintrc root markers)
+    if utils.is_work() then
+      vim.lsp.enable 'oxlint'
+    end
+
     require('mason').setup()
 
     local ensure_installed = {
@@ -72,8 +79,6 @@ return {
       -- 'prettier', -- file formatter for many formats like js
       -- 'jq', -- Json processor
     }
-
-    local utils = require 'config.utils'
 
     if not utils.is_work() then
       vim.list_extend(ensure_installed, { 'clojure_lsp', 'nil_ls' })
