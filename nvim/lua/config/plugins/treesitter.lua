@@ -4,7 +4,8 @@ return { -- Highlight, edit, and navigate code
   build = ':TSUpdate',
   lazy = false,
   config = function()
-    local ensure_installed = { 'bash', 'c', 'html', 'lua', 'markdown', 'vim', 'vimdoc', 'rust', 'markdown_inline', 'zsh' }
+    local ensure_installed =
+      { 'bash', 'c', 'html', 'lua', 'markdown', 'vim', 'vimdoc', 'rust', 'markdown_inline', 'zsh', 'typescript', 'tsx', 'javascript', 'json' }
     require('nvim-treesitter').install(ensure_installed)
 
     local utils = require 'config.utils'
