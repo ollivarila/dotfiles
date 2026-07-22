@@ -195,6 +195,37 @@ function M.trouble()
   end, 'Toggle Trouble')
 end
 
+function M.dap()
+  local dap = require 'dap'
+  local dapui = require 'dapui'
+
+  -- VSCode-like F-keys
+  vim.keymap.set('n', '<F5>', dap.continue, { desc = 'Debug: Continue' })
+  vim.keymap.set('n', '<S-F5>', dap.terminate, { desc = 'Debug: Terminate' })
+  vim.keymap.set('n', '<F9>', dap.toggle_breakpoint, { desc = 'Debug: Toggle breakpoint' })
+  vim.keymap.set('n', '<F10>', dap.step_over, { desc = 'Debug: Step over' })
+  vim.keymap.set('n', '<F11>', dap.step_into, { desc = 'Debug: Step into' })
+  vim.keymap.set('n', '<S-F11>', dap.step_out, { desc = 'Debug: Step out' })
+
+  -- <leader>d mnemonic group
+  norm('<leader>db', dap.toggle_breakpoint, '[D]ebug: Toggle [B]reakpoint')
+  norm('<leader>dB', function()
+    vim.ui.input({ prompt = 'Breakpoint condition: ' }, function(condition)
+      if condition == nil or condition == '' then
+        return
+      end
+      dap.set_breakpoint(condition)
+    end)
+  end, '[D]ebug: Conditional [B]reakpoint')
+  norm('<leader>dc', dap.continue, '[D]ebug: [C]ontinue')
+  norm('<leader>di', dap.step_into, '[D]ebug: Step [I]nto')
+  norm('<leader>dn', dap.step_over, '[D]ebug: Step over ([N]ext)')
+  norm('<leader>dO', dap.step_out, '[D]ebug: Step [O]ut')
+  norm('<leader>dt', dap.terminate, '[D]ebug: [T]erminate')
+  norm('<leader>dr', dap.repl.toggle, '[D]ebug: Toggle [R]epl')
+  norm('<leader>du', dapui.toggle, '[D]ebug: Toggle [U]I')
+end
+
 function M.mini_sessions()
   if MiniSessions == nil then
     vim.print 'mini.sessions is not loaded'
