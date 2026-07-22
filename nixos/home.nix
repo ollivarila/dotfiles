@@ -56,6 +56,7 @@ in
     uv
     python3
     gh
+    parallel
   ];
   programs.home-manager.enable = true;
 
