@@ -4,7 +4,7 @@
   "margin-bottom": 1,
   "modules-left": [ "hyprland/workspaces", "custom/kblayout", "custom/sink", "mpris" ],
   "modules-center": [ "custom/signal" ],
-  "modules-right": [ "pulseaudio", "cpu", "custom/clock", "custom/date" ],
+  "modules-right": [ "custom/dictation", "pulseaudio", "cpu", "custom/clock", "custom/date" ],
   "custom/date": {
     "exec": "date +' %d.%m'",
     "interval": 900
@@ -41,5 +41,11 @@
   "custom/sink": {
     "exec": "~/.bin/echo-sink",
     "signal": 7
+  },
+  "custom/dictation": {
+    "exec": "whisper-dictation-status",
+    "signal": 8,
+    "return-type": "json",
+    "hide-empty-text": true
   }
 }

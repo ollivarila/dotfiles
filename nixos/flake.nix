@@ -18,7 +18,6 @@
       url = "github:ogulcancelik/herdr";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
   };
   outputs =
     {
@@ -34,7 +33,8 @@
       custom-packages = final: prev: {
         metronome = metronome.packages.${system}.default;
         herdr = herdr.packages.${system}.default;
-      };
+      }
+      // (import ./pkgs/whisper-dictation.nix { pkgs = final; });
       overlays = [
         rust-overlay.overlays.default
         custom-packages
@@ -42,6 +42,12 @@
       pkgs = import nixpkgs {
         inherit system;
         inherit overlays;
+        config = {
+          allowUnfree = true;
+          # GTX 1080 is Pascal (sm_61); nixpkgs' default cudaCapabilities
+          # targets newer cards and would otherwise skip it.
+          cudaCapabilities = [ "6.1" ];
+        };
       };
       unfree = true;
     in

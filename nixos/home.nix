@@ -57,6 +57,10 @@ in
     python3
     gh
     parallel
+    wtype
+    whisper-dictation-start
+    whisper-dictation-stop
+    whisper-dictation-status
   ];
   programs.home-manager.enable = true;
 
