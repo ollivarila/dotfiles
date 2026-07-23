@@ -61,6 +61,7 @@
 #workspaces {
   border-radius: 8 2 8 2;
   background: @workspace;
+  margin-right: 8px;
 }
 
 #workspaces button {
@@ -122,8 +123,29 @@
   color: @black;
 }
 
+#custom-kblayout,
+#custom-sink {
+  background: alpha(@bg2, 0.45);
+  border: 1px solid alpha(@white, 0.12);
+  font-weight: 500;
+  font-size: 12px;
+  border-radius: 8px;
+  padding-left: 6px;
+  padding-right: 6px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-right: 8px;
+}
+
 #mpris {
-  margin-left: 8px;
+  background: alpha(@bg2, 0.45);
+  border: 1px solid alpha(@white, 0.12);
+  font-size: 12px;
+  border-radius: 8px;
+  padding-left: 6px;
+  padding-right: 6px;
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
 
 #custom-date {
