@@ -59,7 +59,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd start-hyprland --theme 'border=#8ec07c;text=#ebdbb2;prompt=#83a598;time=#d3869b;action=#fabd2f;button=#fe8019;container=#282828;input=#b8bb26'";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd start-hyprland";
         user = "greeter";
       };
     };
@@ -111,14 +111,6 @@
 
   virtualisation.docker.enable = true;
   networking.firewall.enable = true;
-
-  # Prevent the console/greeter (tuigreet) from cloning to every connected
-  # monitor before Hyprland starts; DP-3 is the middle monitor. Hyprland does
-  # its own modesetting after login so the other outputs come back normally.
-  boot.kernelParams = [
-    "video=DP-2:d"
-    "video=HDMI-A-1:d"
-  ];
 
   boot.loader = {
     grub = {

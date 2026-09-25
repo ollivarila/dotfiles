@@ -61,6 +61,7 @@ in
     whisper-dictation-start
     whisper-dictation-stop
     whisper-dictation-status
+    bun
   ];
   programs.home-manager.enable = true;
 
