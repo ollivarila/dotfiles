@@ -65,6 +65,7 @@ return {
               -- invalidated by CLI `cargo build`/cross-target artifacts;
               -- warms once and stays warm across edits.
               targetDir = true,
+              features = { 'db-integration-tests' },
             },
           },
         },

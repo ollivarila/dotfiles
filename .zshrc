@@ -48,7 +48,13 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 
 # Autoload completions
-autoload -U compinit && compinit
+# Full compinit (slow security check + rescan) only if dump older than 24h
+autoload -U compinit
+if [[ -n ~/.zcompdump(N.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
 
 zinit cdreplay -p
 
@@ -116,8 +122,9 @@ eval "$(fzf --zsh)"
 
 export NVM_DIR="$HOME/.nvm"
 
-[ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm
-[ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
+# nvm stays installed (not loaded) for scripts that source $NVM_DIR/nvm.sh
+eval "$(fnm env --use-on-cd --version-file-strategy=recursive --corepack-enabled --shell zsh)"
+alias nvm='fnm'
 
 
 git_current_branch () {
