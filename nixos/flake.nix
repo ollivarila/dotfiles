@@ -14,10 +14,6 @@
       url = "github:ollivarila/metronome";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    herdr = {
-      url = "github:ogulcancelik/herdr";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
   outputs =
     {
@@ -25,16 +21,16 @@
       home-manager,
       rust-overlay,
       metronome,
-      herdr,
       ...
     }:
     let
       system = "x86_64-linux";
-      custom-packages = final: prev: {
-        metronome = metronome.packages.${system}.default;
-        herdr = herdr.packages.${system}.default;
-      }
-      // (import ./pkgs/whisper-dictation.nix { pkgs = final; });
+      custom-packages =
+        final: prev:
+        {
+          metronome = metronome.packages.${system}.default;
+        }
+        // (import ./pkgs/whisper-dictation.nix { pkgs = final; });
       overlays = [
         rust-overlay.overlays.default
         custom-packages
