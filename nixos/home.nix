@@ -62,6 +62,7 @@ in
     whisper-dictation-stop
     whisper-dictation-status
     bun
+    fnm # zshrc compat only
   ];
   programs.home-manager.enable = true;
 
