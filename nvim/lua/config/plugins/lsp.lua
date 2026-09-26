@@ -10,7 +10,18 @@ return {
     -- Automatic lsp install & setup
     'mason-org/mason-lspconfig.nvim',
     -- Useful status updates for LSP.
-    { 'j-hui/fidget.nvim', opts = {} },
+    {
+      'j-hui/fidget.nvim',
+      opts = {
+        progress = {
+          poll_rate = 200,
+          display = {
+            render_limit = 0,
+            done_ttl = 1,
+          },
+        },
+      },
+    },
   },
   config = function()
     -- lsp config dir configs -> nvim-lspconfig defaults -> mason-lspconfig calls vim.lsp.config and vim.lsp.enable
