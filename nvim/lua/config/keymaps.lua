@@ -158,7 +158,14 @@ function M.lsp(event)
 
   -- Opens a popup that displays documentation about the word under your cursor
   --  See `:help K` for why this keymap
-  map('K', vim.lsp.buf.hover, 'Hover Documentation')
+  --  Cap width so long lines wrap instead of running off screen. Press K again to focus and scroll.
+  map('K', function()
+    vim.lsp.buf.hover {
+      border = 'rounded',
+      max_width = math.floor(vim.o.columns * 0.4),
+      max_height = math.floor(vim.o.lines * 0.4),
+    }
+  end, 'Hover Documentation')
   map('fi', function()
     require('trouble').toggle { mode = 'lsp', focus = true }
   end, 'Open [F][i]nder')
