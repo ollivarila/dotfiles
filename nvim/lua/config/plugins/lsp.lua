@@ -80,7 +80,6 @@ return {
 
     local ensure_installed = {
       'tsc',
-      'eslint',
       'tailwindcss',
       'bashls',
       'lua_ls',
@@ -88,8 +87,9 @@ return {
       'stylua',
       -- 'marksman',
       'pyright',
+      'oxlint',
+      'oxfmt',
       -- NOTE: theres are not available to install via `mason-lspconfig` because there is no configuration for that in the `nvim-lspconfig`
-      -- 'prettier', -- file formatter for many formats like js
       -- 'jq', -- Json processor
     }
 
