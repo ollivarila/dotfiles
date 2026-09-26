@@ -15,8 +15,7 @@ in
   nixpkgs.config.allowUnfree = unfree;
   home.packages = with pkgs; [
     metronome
-    herdr
-    nodejs_22
+    nodejs_24
     discord
     pnpm
     google-chrome
@@ -62,7 +61,6 @@ in
     whisper-dictation-stop
     whisper-dictation-status
     bun
-    fnm # zshrc compat only
   ];
   programs.home-manager.enable = true;
 

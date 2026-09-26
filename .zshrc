@@ -122,10 +122,10 @@ eval "$(fzf --zsh)"
 
 export NVM_DIR="$HOME/.nvm"
 
-# nvm stays installed (not loaded) for scripts that source $NVM_DIR/nvm.sh
-eval "$(fnm env --use-on-cd --version-file-strategy=recursive --corepack-enabled --shell zsh)"
-alias nvm='fnm'
-
+command -v fnm > /dev/null && {
+  eval "$(fnm env --use-on-cd --version-file-strategy=recursive --corepack-enabled --shell zsh)"
+  alias nvm='fnm'
+}
 
 git_current_branch () {
   git rev-parse --abbrev-ref HEAD
