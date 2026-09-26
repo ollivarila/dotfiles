@@ -199,16 +199,22 @@ function M.dap()
   local dap = require 'dap'
   local dapui = require 'dapui'
 
-  -- VSCode-like F-keys
-  vim.keymap.set('n', '<F5>', dap.continue, { desc = 'Debug: Continue' })
-  vim.keymap.set('n', '<S-F5>', dap.terminate, { desc = 'Debug: Terminate' })
-  vim.keymap.set('n', '<F9>', dap.toggle_breakpoint, { desc = 'Debug: Toggle breakpoint' })
-  vim.keymap.set('n', '<F10>', dap.step_over, { desc = 'Debug: Step over' })
-  vim.keymap.set('n', '<F11>', dap.step_into, { desc = 'Debug: Step into' })
-  vim.keymap.set('n', '<S-F11>', dap.step_out, { desc = 'Debug: Step out' })
+  -- VSCode F-keys
+  norm('<F5>', function()
+    if dap.session() == nil and vim.bo.filetype == 'rust' then
+      vim.cmd.RustLsp 'debuggables'
+    else
+      dap.continue()
+    end
+  end, 'Debug: Start/Continue')
+  norm('<S-F5>', dap.terminate, 'Debug: Stop')
+  norm('<C-S-F5>', dap.restart, 'Debug: Restart')
+  norm('<F9>', dap.toggle_breakpoint, 'Debug: Toggle breakpoint')
+  norm('<F10>', dap.step_over, 'Debug: Step over')
+  norm('<F11>', dap.step_into, 'Debug: Step into')
+  norm('<S-F11>', dap.step_out, 'Debug: Step out')
 
-  -- <leader>d mnemonic group
-  norm('<leader>db', dap.toggle_breakpoint, '[D]ebug: Toggle [B]reakpoint')
+  -- Actions without a VSCode F-key
   norm('<leader>dB', function()
     vim.ui.input({ prompt = 'Breakpoint condition: ' }, function(condition)
       if condition == nil or condition == '' then
@@ -217,13 +223,29 @@ function M.dap()
       dap.set_breakpoint(condition)
     end)
   end, '[D]ebug: Conditional [B]reakpoint')
-  norm('<leader>dc', dap.continue, '[D]ebug: [C]ontinue')
-  norm('<leader>di', dap.step_into, '[D]ebug: Step [I]nto')
-  norm('<leader>dn', dap.step_over, '[D]ebug: Step over ([N]ext)')
-  norm('<leader>dO', dap.step_out, '[D]ebug: Step [O]ut')
-  norm('<leader>dt', dap.terminate, '[D]ebug: [T]erminate')
   norm('<leader>dr', dap.repl.toggle, '[D]ebug: Toggle [R]epl')
   norm('<leader>du', dapui.toggle, '[D]ebug: Toggle [U]I')
+
+  vim.api.nvim_create_user_command('DebugHelp', function()
+    local buf = vim.api.nvim_create_buf(false, true)
+    local lines = vim.fn.readfile(vim.fn.stdpath 'config' .. '/debug-help.md')
+    vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+    vim.bo[buf].filetype = 'markdown'
+    vim.bo[buf].modifiable = false
+    local width = math.min(80, vim.o.columns - 4)
+    local height = math.min(#lines, vim.o.lines - 4)
+    vim.api.nvim_open_win(buf, true, {
+      relative = 'editor',
+      width = width,
+      height = height,
+      col = math.floor((vim.o.columns - width) / 2),
+      row = math.floor((vim.o.lines - height) / 2),
+      border = 'rounded',
+      title = ' Debug help ',
+    })
+    vim.keymap.set('n', 'q', '<cmd>close<CR>', { buffer = buf })
+  end, {})
+  norm('<leader>dh', '<cmd>DebugHelp<CR>', '[D]ebug: [H]elp')
 end
 
 function M.mini_sessions()

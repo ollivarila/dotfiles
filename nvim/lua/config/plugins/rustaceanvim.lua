@@ -71,7 +71,9 @@ return {
         },
       },
       -- DAP configuration
-      dap = {},
+      -- Autoload cargo-builds every target in the background before any show
+      -- up in dap.continue(); F5 runs `:RustLsp debuggables` instead (keymaps.lua)
+      dap = { autoload_configurations = false },
     }
   end,
 }
