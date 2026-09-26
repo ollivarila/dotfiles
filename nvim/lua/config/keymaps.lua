@@ -223,6 +223,15 @@ function M.dap()
       dap.set_breakpoint(condition)
     end)
   end, '[D]ebug: Conditional [B]reakpoint')
+  norm('<leader>da', function()
+    vim.ui.input({ prompt = 'Program args: ' }, function(input)
+      if input == nil then
+        return
+      end
+      -- Passed as a list, so RustLsp doesn't re-split quoted args on spaces
+      vim.cmd.RustLsp { args = { 'debuggables', unpack(utils.split_args(input)) } }
+    end)
+  end, '[D]ebug with [A]rgs (Rust)')
   norm('<leader>dr', dap.repl.toggle, '[D]ebug: Toggle [R]epl')
   norm('<leader>du', dapui.toggle, '[D]ebug: Toggle [U]I')
 
@@ -232,7 +241,7 @@ function M.dap()
     vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
     vim.bo[buf].filetype = 'markdown'
     vim.bo[buf].modifiable = false
-    local width = math.min(80, vim.o.columns - 4)
+    local width = math.min(120, vim.o.columns - 4)
     local height = math.min(#lines, vim.o.lines - 4)
     vim.api.nvim_open_win(buf, true, {
       relative = 'editor',
