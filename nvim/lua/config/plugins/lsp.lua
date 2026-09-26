@@ -61,11 +61,13 @@ return {
       capabilities = capabilities,
     })
 
-    vim.lsp.config('ts_ls', {
+    -- TypeScript 7+ native language server (`tsc --lsp`), uses the project's typescript
+    vim.lsp.config('tsc', {
       on_attach = function(client)
-        client.server_capabilities.documentFormattingProvider = false -- 0.8 and later
+        client.server_capabilities.documentFormattingProvider = false
       end,
     })
+    vim.lsp.enable 'tsc'
 
     local utils = require 'config.utils'
 
@@ -77,7 +79,7 @@ return {
     require('mason').setup()
 
     local ensure_installed = {
-      'ts_ls',
+      'tsc',
       'eslint',
       'tailwindcss',
       'bashls',
