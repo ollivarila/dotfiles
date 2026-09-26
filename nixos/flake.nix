@@ -2,6 +2,8 @@
   description = "NixOs config";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    # Fast-moving apps (e.g. Signal) that break when too old
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,6 +20,7 @@
   outputs =
     {
       nixpkgs,
+      nixpkgs-unstable,
       home-manager,
       rust-overlay,
       metronome,
@@ -25,10 +28,15 @@
     }:
     let
       system = "x86_64-linux";
+      unstable = import nixpkgs-unstable {
+        inherit system;
+        config.allowUnfree = true;
+      };
       custom-packages =
         final: prev:
         {
           metronome = metronome.packages.${system}.default;
+          signal-desktop = unstable.signal-desktop;
         }
         // (import ./pkgs/whisper-dictation.nix { pkgs = final; });
       overlays = [
