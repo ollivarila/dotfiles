@@ -40,6 +40,8 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# p10k emits OSC 133 marks itself; ghostty zsh integration mangles p10k multiline PS1
+typeset -g POWERLEVEL9K_TERM_SHELL_INTEGRATION=true
 
 # Syntax highlights
 zinit light zsh-users/zsh-syntax-highlighting

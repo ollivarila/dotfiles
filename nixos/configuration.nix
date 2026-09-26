@@ -28,6 +28,8 @@
   services.hardware.openrgb.enable = true;
   programs.hyprland.enable = true;
   programs.zsh.enable = true;
+  programs.zsh.enableGlobalCompInit = false; # compinit handled in .zshrc
+  programs.zsh.promptInit = ""; # p10k handles prompt; promptinit breaks prompt_subst
   programs.steam.enable = true; # TODO: not available in home-manager somehow?
   programs.nix-ld.enable = true;
 

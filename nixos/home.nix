@@ -110,17 +110,19 @@ in
 
   programs = {
     ghostty = {
+      enableZshIntegration = false; # breaks p10k prompt, see .zshrc
       enable = true;
       settings = {
         font-family = font-family;
         font-size = 12;
         cursor-style = "block";
         cursor-style-blink = false;
-        shell-integration-features = "no-cursor";
+        shell-integration = "none";
       };
     };
     zsh = {
       enable = true;
+      completionInit = ""; # compinit handled in .zshrc
       initContent = pkgs.lib.mkMerge [
         (pkgs.lib.mkOrder 1000 "source ${dotfilesDir}/.zshrc")
         (pkgs.lib.mkOrder 1200 "source ${dotfilesDir}/.zsh_aliases")
